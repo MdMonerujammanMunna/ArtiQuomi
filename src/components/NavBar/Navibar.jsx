@@ -74,7 +74,7 @@ export default function Navbar() {
                             <Button
                                 as={NextLink}
                                 href="/get-started"
-                                className="cursor-pointer bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-2xl font-semibold text-black"
+                                className="cursor-pointer bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
                             >
                                 Get Started
                             </Button>

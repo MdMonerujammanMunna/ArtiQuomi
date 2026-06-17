@@ -59,7 +59,7 @@ const WhyChooseUs = () => {
                 <header className="text-center max-w-3xl mx-auto mb-16">
                     <div className="flex items-center justify-center mb-5 gap-4">
                         <div className="w-3 h-1 bg-[#10B981] rounded-full animate-pulse" />
-                        <h2 className="text-xs font-semibold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#06B6D4] to-[#10B981]">
+                        <h2 className="text-xs font-semibold uppercase tracking-widest text-transparent bg-clip-text bg-liner-to-r from-[#06B6D4] to-[#10B981]">
                             Why Choose Arti Quomi
                         </h2>
                         <div className="w-3 h-1 bg-[#10B981] rounded-full animate-pulse" />

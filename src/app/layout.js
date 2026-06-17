@@ -1,6 +1,7 @@
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/NavBar/Navibar";
+import Footer from "@/components/Footer/FooterSection";
 
 const InterTO = Inter({
   variable: "--font-geist-sans",
@@ -23,10 +24,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${InterTO.variable} ${Space_GroteskTO.variable} font-sans`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col container mx-auto">
         <Navbar />
         <main>{children}</main>
-
+        <Footer />
       </body>
     </html>
   );
