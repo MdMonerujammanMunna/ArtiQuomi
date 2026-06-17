@@ -64,7 +64,7 @@ export default function Navbar() {
                     {/* Desktop Buttons */}
                     <div className="hidden items-center gap-5 md:flex">
                         <Link
-                            href="/login"
+                            href="/LogIn"
                             className="flex items-center gap-2 text-emerald-400"
                         >
                             <FiLock />
@@ -139,7 +139,7 @@ export default function Navbar() {
 
                         <li className="pt-3">
                             <Link
-                                href="/login"
+                                href="/LogIn"
                                 className="flex items-center gap-2 text-emerald-400"
                                 onPress={() => setIsMenuOpen(false)}
                             >
