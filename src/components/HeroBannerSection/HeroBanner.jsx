@@ -44,9 +44,10 @@ const Hero = () => {
 
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#151723] border border-[#26293B] mb-8">
+                    
                     <span className="w-2 h-2 rounded-full bg-linear-to-r from-[#06B6D4] to-[#10B981] animate-ping"></span>
                     <span className="text-xs font-semibold text-[#34D399] uppercase tracking-wide">
-                        20% Discount for 1 Month Account
+                        New: Ai Creators & Prompts Hub
                     </span>
                 </div>
 
