@@ -19,7 +19,12 @@ export default function SignUpPage() {
         const userData = Object.fromEntries(formData.entries());
         console.log(userData)
         const { data, error } = await authClient.signUp.email({
-            ...userData, plan: 'free'
+            name: userData.name,
+            email: userData.email,
+            password: userData.password,
+            role: userData.role,
+            image: userData.image,
+            plan: 'free'
         })
         if (data) {
             toast.success("Account created successfully")
@@ -140,7 +145,7 @@ export default function SignUpPage() {
                         </div>
                     </div>
                     <div className="space-y-1.5">
-                        <label htmlFor="photoURL" className="font-semibold">
+                        <label htmlFor="image" className="font-semibold">
                             PhotoURL
                         </label>
                         <div className="relative">
@@ -158,8 +163,8 @@ export default function SignUpPage() {
                                 </svg>
                             </span>
                             <input
-                                id="imageURL"
-                                name="imageURL"
+                                id="image"
+                                name="image"
                                 type="url"
                                 placeholder="Enter your image URL"
                                 required

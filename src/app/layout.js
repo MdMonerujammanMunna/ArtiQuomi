@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${InterTO.variable} ${Space_GroteskTO.variable} font-sans`}
     >
-      <body className="min-h-full flex flex-col container mx-auto">
+      <body className="min-h-full flex flex-col bg-[#030712] text-white container mx-auto">
         <Navbar />
         <main>{children}</main>
         <Footer />

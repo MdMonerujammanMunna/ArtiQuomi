@@ -8,8 +8,10 @@ import { FiLock } from "react-icons/fi";
 import { FaChevronDown } from "react-icons/fa";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { authClient } from "@/lib/auth-client";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+    const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { data, isPending } = authClient.useSession();
     const user = data?.user;
@@ -21,9 +23,11 @@ export default function Navbar() {
         { name: "All Prompts", href: "/AllPrompts/AllData", dropdown: true },
         ...(data?.user ? [{ name: "Dashboard", href: "/Dashboard" }] : []),
     ];
-
+    if (pathname.includes("/Dashboard")) {
+        return
+    }
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-[#1E293B] bg-[#030712]/80 backdrop-blur-xl">
+        <nav className="sticky top-0 z-50 w-full bg-[#030712] backdrop-blur-xl">
             {/* Top Gradient */}
             <div className="h-0.5 w-full bg-linear-to-r from-cyan-500 to-emerald-500" />
 

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
     FiFacebook,
     FiTwitter,
@@ -11,6 +12,7 @@ import {
 } from "react-icons/fi";
 
 const Footer = () => {
+    const pathname = usePathname();
     const services = [
         "Prompt Marketplace",
         "AI Image Prompts",
@@ -37,7 +39,9 @@ const Footer = () => {
         "Affiliates",
         "Roadmap",
     ];
-
+    if (pathname.includes("/Dashboard")) {
+        return
+    }
     return (
         <footer className="relative overflow-hidden border-t border-white/10 bg-[#030712]">
 
