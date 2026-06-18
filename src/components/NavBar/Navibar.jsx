@@ -17,7 +17,7 @@ export default function Navbar() {
         },
         {
             name: "All Prompts",
-            href: "/prompts",
+            href: "/AllPrompts",
             dropdown: true,
         },
     ];
@@ -70,10 +70,10 @@ export default function Navbar() {
                             <FiLock />
                             Secure Login
                         </Link>
-                        <Link href="/get-started">
+                        <Link href="/SignUpPage">
                             <Button
                                 as={NextLink}
-                                href="/get-started"
+                                href="/SignUpPage"
                                 className="cursor-pointer bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
                             >
                                 Get Started
@@ -151,7 +151,7 @@ export default function Navbar() {
                         <li className="pt-2">
                             <Button
                                 as={NextLink}
-                                href="/get-started"
+                                href="/SignUpPage"
                                 className="bg-linear-to-r from-cyan-500 to-emerald-500 font-semibold text-black w-full py-2 rounded-lg"
                             >
                                 Get Started

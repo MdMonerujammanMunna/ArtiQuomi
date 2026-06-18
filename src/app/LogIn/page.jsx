@@ -1,9 +1,10 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { authClient } from "../lib/auth-client";
+import { toast } from "react-toastify";
 
 export default function LogIn() {
     const [showPassword, setShowPassword] = useState(false);
@@ -15,14 +16,19 @@ export default function LogIn() {
         const { data, error } = await authClient.signIn.email({
             email: userdata.email,
             password: userdata.password,
-            callbackURL: "/"
+            // callbackURL: "/"
         });
         if (error) {
-            alert("Login failed: " + error.message);
+            toast.error("Login failed: " + error.message);
         } else {
-            alert("Login successful!");
+            toast.success("Login successful!");
         }
     };
+    const signIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+    }
     return (
         <div className="flex items-center justify-center px-4 py-20">
             <form
@@ -128,7 +134,7 @@ export default function LogIn() {
                         <div className="flex-1 h-px bg-neutral-600" />
                     </div>
 
-                    <button
+                    <button onClick={signIn}
                         type="button"
                         className="border cursor-pointer border-emerald-400 w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-white active:scale-[0.98] transition-all mb-10"
                     >
@@ -145,7 +151,7 @@ export default function LogIn() {
                 <div className="px-8 py-4 text-center border-t ">
                     <p>
                         Dont have an account?{" "}
-                        <Link href="/SignUp" className="text-sm font-medium text-emerald-400">
+                        <Link href="/SignUpPage" className="text-sm font-medium text-emerald-400">
                             Sign up
                         </Link>
                     </p>

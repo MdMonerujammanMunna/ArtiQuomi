@@ -2,33 +2,37 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Select, Label, ListBox } from "@heroui/react";
+import { Select, Label, ListBox, RadioGroup, Radio } from "@heroui/react";
 import { FaMagnifyingGlassPlus } from "react-icons/fa6";
 import { LuSquareChartGantt } from "react-icons/lu";
-import { authClient } from "../lib/auth-client";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
-export default function SignUp() {
+export default function SignUpPage() {
     const router = useRouter();
-   const [role, setRole] = useState("");
+    const [role, setRole] = useState("user");
     const [showPassword, setShowPassword] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        formData.set("role", role);
         const userData = Object.fromEntries(formData.entries());
+        console.log(userData)
         const { data, error } = await authClient.signUp.email({
-            email: userData.email,
-            password: userData.password,
-            name: userData.name,
-            role: userData.role,
-        });
-        if (error) {
-            alert("Sign up failed: " + error.message);
-        } else {
-            alert("Sign up successful!");
-            router.push("/LogIn");
+            ...userData, plan: 'free'
+        })
+        if (data) {
+            toast.success("Account created successfully")
+            router.push("/LogIn")
         }
+        else {
+            toast.error("Account creation failed")
+        }
+    }
+    const signIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
     }
     return (
         <div className="flex items-center justify-center px-4 py-20">
@@ -135,33 +139,82 @@ export default function SignUp() {
                             </button>
                         </div>
                     </div>
-                    {/* Roal  */}
                     <div className="space-y-1.5">
-                        <Select name="role" selectedKey={role}
-                            onSelectionChange={(key) => setRole(String(key))} placeholder="Choose Your Role" isRequired>
-                            <Label>Get Started As</Label>
-                            <Select.Trigger className={"mt-1 rounded-lg border focus:border-2 text-sm placeholder:text-gray-200 focus:outline-none focus:border-[#5C53FE] transition"}>
-                                <Select.Value className={"flex items-center gap-4"} />
-                                <Select.Indicator />
-                            </Select.Trigger>
-                            <Select.Popover className={"rounded-lg"}>
-                                <ListBox>
-                                    <ListBox.Item id="Seeker" textValue="Seeker">
-                                        <FaMagnifyingGlassPlus />
-                                        Seeker
-                                        <ListBox.ItemIndicator />
-                                    </ListBox.Item>
-                                    <ListBox.Item id="Recruiter" textValue="Recruiter">
-                                        <LuSquareChartGantt />
-                                        Recruiter
-                                        <ListBox.ItemIndicator />
-                                    </ListBox.Item>
-                                </ListBox>
-                            </Select.Popover>
-                        </Select>
-                        {/* keep a native hidden input so FormData picks up the role value */}
+                        <label htmlFor="photoURL" className="font-semibold">
+                            PhotoURL
+                        </label>
+                        <div className="relative">
+                            <span className="absolute inset-y-6 left-3 flex items-center ">
+                                <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <rect x="3" y="4" width="18" height="14" rx="2" />
+                                    <circle cx="8.5" cy="9.5" r="1.5" />
+                                    <path d="M21 16l-5-5L5 21" />
+                                </svg>
+                            </span>
+                            <input
+                                id="imageURL"
+                                name="imageURL"
+                                type="url"
+                                placeholder="Enter your image URL"
+                                required
+                                className="mt-1 w-full pl-9 pr-4 py-2.5 text-sm rounded-lg border focus:border-2 placeholder:text-gray-200 focus:outline-none focus:border-emerald-400 transition"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="">
+                        <Label className="text-white font-semibold">Select Your Role</Label>
+
+                        <RadioGroup
+                            value={role}
+                            onValueChange={setRole}
+                            orientation="horizontal"
+                            className="flex gap-4 mt-2"
+                        >
+                            <Radio className="flex-1" value="user" onClick={() => setRole("user")}>
+                                <Radio.Content
+                                    onClick={() => setRole("user")}
+                                    role="button"
+                                    tabIndex={0}
+                                    className={`flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-3 transition-all duration-200 ${role === "user"
+                                        ? "border-emerald-500 "
+                                        : "border-[#26293B]  hover:border-white"
+                                        }`}
+                                >
+                                    <Radio.Control>
+                                        <Radio.Indicator />
+                                    </Radio.Control>
+                                    <span className="text-white">User</span>
+                                </Radio.Content>
+                            </Radio>
+
+                            <Radio className="flex-1" value="creator" onClick={() => setRole("creator")}>
+                                <Radio.Content
+                                    onClick={() => setRole("creator")}
+                                    role="button"
+                                    tabIndex={0}
+                                    className={`flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-3 transition-all duration-200 ${role === "creator"
+                                        ? "border-emerald-500"
+                                        : "border-[#26293B] hover:border-white"
+                                        }`}
+                                >
+                                    <Radio.Control>
+                                        <Radio.Indicator />
+                                    </Radio.Control>
+                                    <span className="text-white">Creator</span>
+                                </Radio.Content>
+                            </Radio>
+                        </RadioGroup>
+
                         <input type="hidden" name="role" value={role} />
                     </div>
+
                     <button
                         type="submit"
                         className="mt-10 border cursor-pointer bg-emerald-400 w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-black hover:opacity-90 active:scale-[0.98] transition-all"
@@ -178,7 +231,7 @@ export default function SignUp() {
                         <div className="flex-1 h-px bg-neutral-600" />
                     </div>
 
-                    <button
+                    <button onClick={signIn}
                         type="button"
                         className="border cursor-pointer border-emerald-400 w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-white active:scale-[0.98] transition-all mb-10"
                     >

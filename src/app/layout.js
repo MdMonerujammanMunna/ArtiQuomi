@@ -1,7 +1,11 @@
+const dns = require("node:dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/NavBar/Navibar";
 import Footer from "@/components/Footer/FooterSection";
+import { ToastContainer } from "react-toastify";
 
 const InterTO = Inter({
   variable: "--font-geist-sans",
@@ -28,6 +32,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <ToastContainer />
       </body>
     </html>
   );
