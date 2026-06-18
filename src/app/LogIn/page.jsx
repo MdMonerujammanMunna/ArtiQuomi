@@ -16,7 +16,7 @@ export default function LogIn() {
         const { data, error } = await authClient.signIn.email({
             email: userdata.email,
             password: userdata.password,
-            // callbackURL: "/"
+            callbackURL: "/"
         });
         if (error) {
             toast.error("Login failed: " + error.message);

@@ -44,7 +44,7 @@ const Hero = () => {
 
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#151723] border border-[#26293B] mb-8">
-                    
+
                     <span className="w-2 h-2 rounded-full bg-linear-to-r from-[#06B6D4] to-[#10B981] animate-ping"></span>
                     <span className="text-xs font-semibold text-[#34D399] uppercase tracking-wide">
                         New: Ai Creators & Prompts Hub
@@ -128,7 +128,7 @@ const Hero = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-20">
-                    <Link href={"/AllP"}>
+                    <Link href={"/AllPrompts"}>
                         <button className="group inline-flex items-center gap-2 px-8 py-3.5 bg-linear-to-r from-[#06B6D4] to-[#10B981] text-[#030712] font-semibold text-sm rounded-full  hover:shadow-xl hover:shadow-emerald-500/10">
                             Explore All Prompts
                             <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />

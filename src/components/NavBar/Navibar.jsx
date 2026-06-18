@@ -6,20 +6,20 @@ import NextLink from "next/link";
 import { Button, Link } from "@heroui/react";
 import { FiLock } from "react-icons/fi";
 import { FaChevronDown } from "react-icons/fa";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
+import { authClient } from "@/lib/auth-client";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+    const { data, isPending } = authClient.useSession();
+    const user = data?.user;
+    const SignOutClick = async () => {
+        await authClient.signOut();
+    };
     const navItems = [
-        {
-            name: "Home",
-            href: "/",
-        },
-        {
-            name: "All Prompts",
-            href: "/AllPrompts",
-            dropdown: true,
-        },
+        { name: "Home", href: "/" },
+        { name: "All Prompts", href: "/AllPrompts/AllData", dropdown: true },
+        ...(data?.user ? [{ name: "Dashboard", href: "/Dashboard" }] : []),
     ];
 
     return (
@@ -63,22 +63,35 @@ export default function Navbar() {
                 <div className="flex items-center gap-4">
                     {/* Desktop Buttons */}
                     <div className="hidden items-center gap-5 md:flex">
-                        <Link
-                            href="/LogIn"
-                            className="flex items-center gap-2 text-emerald-400"
-                        >
-                            <FiLock />
-                            Secure Login
-                        </Link>
-                        <Link href="/SignUpPage">
-                            <Button
-                                as={NextLink}
-                                href="/SignUpPage"
-                                className="cursor-pointer bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
-                            >
-                                Get Started
-                            </Button>
-                        </Link>
+                        {!user ?
+                            <>
+                                <Link
+                                    href="/LogIn"
+                                    className="flex items-center gap-2 text-emerald-400"
+                                >
+                                    <FiLock />
+                                    Secure Login
+                                </Link>
+                                <Link href="/SignUpPage">
+                                    <Button
+                                        as={NextLink}
+                                        href="/SignUpPage"
+                                        className="cursor-pointer bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
+                                    >
+                                        Get Started
+                                    </Button>
+                                </Link>
+                            </>
+                            :
+                            <>
+                                <Button
+                                    onClick={SignOutClick}
+                                    className="cursor-pointer flex items-center gap-1 bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
+                                >
+                                    Sign Out <FaArrowRightFromBracket className="w-4 h-4 ml-1" />
+                                </Button>
+                            </>
+                        }
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -128,7 +141,7 @@ export default function Navbar() {
                                 <Link
                                     href={item.href}
                                     className="flex items-center justify-between py-2 text-slate-300"
-                                    onPress={() => setIsMenuOpen(false)}
+                                    onClick={() => setIsMenuOpen(false)}
                                 >
                                     {item.name}
 
@@ -136,27 +149,42 @@ export default function Navbar() {
                                 </Link>
                             </li>
                         ))}
+                        {!user ?
+                            <>
+                                <li className="pt-3">
+                                    <Link
+                                        href="/LogIn"
+                                        className="flex items-center gap-2 text-emerald-400"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        <FiLock />
+                                        Secure Login
+                                    </Link>
+                                </li>
 
-                        <li className="pt-3">
-                            <Link
-                                href="/LogIn"
-                                className="flex items-center gap-2 text-emerald-400"
-                                onPress={() => setIsMenuOpen(false)}
-                            >
-                                <FiLock />
-                                Secure Login
-                            </Link>
-                        </li>
+                                <li className="pt-2">
+                                    <Link href="/SignUpPage">
+                                        <Button
+                                            as={NextLink}
+                                            href="/SignUpPage"
+                                            className="cursor-pointer bg-linear-to-r w-full from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
+                                        >
+                                            Get Started
+                                        </Button>
+                                    </Link>
+                                </li>
+                            </>
+                            :
+                            <>
+                                <Button
+                                    onClick={SignOutClick}
+                                    className="cursor-pointer w-full flex justify-center items-center gap-1 bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
+                                >
+                                    Sign Out <FaArrowRightFromBracket className="w-4 h-4 ml-1" />
+                                </Button>
+                            </>
+                        }
 
-                        <li className="pt-2">
-                            <Button
-                                as={NextLink}
-                                href="/SignUpPage"
-                                className="bg-linear-to-r from-cyan-500 to-emerald-500 font-semibold text-black w-full py-2 rounded-lg"
-                            >
-                                Get Started
-                            </Button>
-                        </li>
                     </ul>
                 </div>
             )}

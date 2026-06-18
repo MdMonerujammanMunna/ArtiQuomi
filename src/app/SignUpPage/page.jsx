@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Select, Label, ListBox, RadioGroup, Radio } from "@heroui/react";
+import { Label, RadioGroup, Radio } from "@heroui/react";
 import { FaMagnifyingGlassPlus } from "react-icons/fa6";
 import { LuSquareChartGantt } from "react-icons/lu";
 import { useState } from "react";
