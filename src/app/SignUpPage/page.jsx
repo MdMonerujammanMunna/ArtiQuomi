@@ -17,7 +17,6 @@ export default function SignUpPage() {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData.entries());
-        console.log(userData)
         const { data, error } = await authClient.signUp.email({
             name: userData.name,
             email: userData.email,
@@ -180,9 +179,9 @@ export default function SignUpPage() {
                             value={role}
                             onValueChange={setRole}
                             orientation="horizontal"
-                            className="flex gap-4 mt-2"
+                            className="flex w-full gap-4 mt-2"
                         >
-                            <Radio className="flex-1" value="user" onClick={() => setRole("user")}>
+                            <Radio className="" value="user" onClick={() => setRole("user")}>
                                 <Radio.Content
                                     onClick={() => setRole("user")}
                                     role="button"
@@ -192,14 +191,11 @@ export default function SignUpPage() {
                                         : "border-[#26293B]  hover:border-white"
                                         }`}
                                 >
-                                    <Radio.Control>
-                                        <Radio.Indicator />
-                                    </Radio.Control>
                                     <span className="text-white">User</span>
                                 </Radio.Content>
                             </Radio>
 
-                            <Radio className="flex-1" value="creator" onClick={() => setRole("creator")}>
+                            <Radio className="" value="creator" onClick={() => setRole("creator")}>
                                 <Radio.Content
                                     onClick={() => setRole("creator")}
                                     role="button"
@@ -209,9 +205,6 @@ export default function SignUpPage() {
                                         : "border-[#26293B] hover:border-white"
                                         }`}
                                 >
-                                    <Radio.Control>
-                                        <Radio.Indicator />
-                                    </Radio.Control>
                                     <span className="text-white">Creator</span>
                                 </Radio.Content>
                             </Radio>

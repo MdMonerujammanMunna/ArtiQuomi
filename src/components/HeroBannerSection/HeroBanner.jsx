@@ -128,13 +128,13 @@ const Hero = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-20">
-                    <Link href={"/AllPrompts"}>
+                    <Link href={"/AllPrompts/AllData"}>
                         <button className="group inline-flex items-center gap-2 px-8 py-3.5 bg-linear-to-r from-[#06B6D4] to-[#10B981] text-[#030712] font-semibold text-sm rounded-full  hover:shadow-xl hover:shadow-emerald-500/10">
                             Explore All Prompts
                             <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
                         </button>
                     </Link>
-                    <Link href={"/"}>
+                    <Link href={"/SignUpPage"}>
                         <button className="px-8 py-3.5 bg-[#151723]/60 text-[#F8FAFC] border-2 hover:border-[#34D399]/50 hover:text-[#34D399] font-semibold text-sm border-[#26293B] transition-all duration-300 rounded-full">
                             Become a Creator
                         </button>

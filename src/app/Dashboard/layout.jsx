@@ -7,7 +7,6 @@ const DashboardLayout = ({ children }) => {
             <div className="flex">
                 <DashBoardsideBar />
                 <div className="flex-1 overflow-hidden px-10 py-20">
-                   
                     <main>{children}</main>
                 </div>
             </div>

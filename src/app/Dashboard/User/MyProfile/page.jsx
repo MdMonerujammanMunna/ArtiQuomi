@@ -26,6 +26,7 @@ import { authClient } from "@/lib/auth-client";
 const MyProfile = () => {
     const userSession = authClient.useSession();
     const user = userSession.data?.user;
+    
     return (
         <div className="">
             <h1 className="font-bold text-3xl mb-2">Hi! {user?.name} Welcome to Profile </h1>

@@ -12,5 +12,5 @@ export async function proxy(request) {
 }
 
 export const config = {
-    matcher: ['/AllPrompts']
+    matcher: ['/AllPrompts/AllData']
 }

@@ -3,26 +3,49 @@
 import Link from "next/link";
 import { TbLayoutSidebarLeftCollapseFilled } from "react-icons/tb";
 import { IoPersonCircleSharp, IoBookmarks } from "react-icons/io5";
+import { RiAddCircleFill } from "react-icons/ri";
 import { BiSolidMessage } from "react-icons/bi";
 import { FaBookOpen } from "react-icons/fa";
 
 
-import { Button, Drawer } from "@heroui/react";
+import { Avatar, Button, Drawer } from "@heroui/react";
 import Image from "next/image";
 import { useState } from "react";
-
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 export function DashBoardsideBar() {
-    const [activeTab, setActiveTab] = useState("My Profile");
+    const usesession = authClient.useSession()
+    const SignOutClick = async () => {
+        await authClient.signOut()
+        redirect("/")
+    };
+    const [activeTab, setActiveTab] = useState("My Profile")
+    const DashboardSideBar = {
+        "user": [
+            { icon: IoPersonCircleSharp, label: "My Profile", url: "/Dashboard/User/MyProfile" },
+            { icon: RiAddCircleFill, label: "Create Prompt", url: "/Dashboard/User/CreatePrompt" },
+            { icon: FaBookOpen, label: "My Prompts", url: "/Dashboard/User/MyPrompts" },
+            { icon: IoBookmarks, label: "Saved Prompts", url: "/Dashboard/User/SavePrompts" },
+            { icon: BiSolidMessage, label: "My Reviews", url: "/Dashboard/User/ReviewsPrompts" },
+        ],
+        "creator": [
+            { icon: IoPersonCircleSharp, label: "My Profile", url: "/Dashboard/Creator/MyProfile" },
+            { icon: RiAddCircleFill, label: "Create Prompt", url: "/Dashboard/Creator/CreatePrompt" },
+            { icon: FaBookOpen, label: "My Prompts", url: "/Dashboard/Creator/MyPrompts" },
+        ],
+        "admin": [
+            { icon: IoPersonCircleSharp, label: "All Users", url: "/Dashboard/Admin/MyProfile" },
+            { icon: RiAddCircleFill, label: "All Prompts", url: "/Dashboard/Admin/MyPrompts" },
+            { icon: FaBookOpen, label: "Reported Prompts", url: "/Dashboard/Admin/ReviewsPrompts" },
+            { icon: IoBookmarks, label: "Analytics", url: "/Dashboard/Admin/SavePrompts" },
+        ]
+    }
 
-    const navItems = [
-        { icon: IoPersonCircleSharp, label: "My Profile", url: "/Dashboard/User/MyProfile" },
-        { icon: FaBookOpen, label: "My Prompts", url: "/Dashboard/User" },
-        { icon: IoBookmarks, label: "Saved Prompts", url: "/Dashboard/User" },
-        { icon: BiSolidMessage, label: "My Reviews", url: "/Dashboard/User" },
-    ];
+    const role = usesession.data?.user?.role;
 
+    const navItems = DashboardSideBar[role] || DashboardSideBar["user"];
     const AllSide = <>
-        <div className="px-6 py-10 text-white">
+        <div className="px-6 py-10 text-white flex flex-col h-full">
             <Link href="/" className="flex items-center gap-2 mb-10">
                 <Image src="/logo.png" alt="Logo" width={40} height={40} />
 
@@ -33,27 +56,43 @@ export function DashBoardsideBar() {
                     </span>
                 </span>
             </Link>
-            <nav className="flex flex-col gap-5 min-h-screen">
+            <nav className="flex flex-col gap-5 flex-1">
                 {navItems.map((item) => {
                     const ItemIcon = item.icon;
                     return (
                         <Link
                             key={item.label}
                             href={item.url}
+                            onClick={() => setActiveTab(item.label)}
+                            className={`flex items-center gap-4 rounded-l-sm rounded-none px-5 py-4 font-semibold w-full border-r-4 border-emerald-500 ${activeTab === item.label
+                                ? "font-semibold bg-linear-to-r from-cyan-500 to-emerald-500"
+                                : "border-l-transparent hover:bg-emerald-500"
+                                }`}
                         >
-                            <button onClick={() => setActiveTab(item.label)}
-                                className={`flex items-center gap-4 rounded-l-sm rounded-none px-5 py-4 font-semibold w-full border-r-4 border-emerald-500 ${activeTab === item.label
-                                    ? " font-semibold bg-linear-to-r from-cyan-500 to-emerald-500"
-                                    : " border-l-transparent hover:bg-emerald-500"
-                                    }`}>
-                                <ItemIcon className="w-5 h-5" />
-                                <span>{item.label}</span>
-                            </button>
-
+                            <ItemIcon className="w-5 h-5" />
+                            <span>{item.label}</span>
                         </Link>
                     )
 
                 })}
+                <div className="mt-auto pt-6 border-t border-white/10 space-y-3">
+                    <Link href={"/Dashboard/user/MyProfile"} className="flex items-center gap-2">
+                        <Avatar>
+                            <Avatar.Image alt="John Doe" src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3" />
+                            <Avatar.Fallback>JD</Avatar.Fallback>
+                        </Avatar>
+                        <div className="">
+                            <h1 className="text-xl font-bold">John Doe</h1>
+                            <p className="text-sm text-slate-400">Admin</p>
+                        </div>
+                    </Link>
+                    <button
+                        className="flex items-center gap-4 px-5 py-4 font-semibold w-full text-red-400 hover:bg-red-500/10 rounded-md"
+                        onClick={SignOutClick}
+                    >
+                        Log Out
+                    </button>
+                </div>
             </nav>
         </div>
     </>
