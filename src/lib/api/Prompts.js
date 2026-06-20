@@ -1,6 +1,6 @@
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-// get data:-
+// get data:-  done
 export const getPrompts = async () => {
     const response = await fetch(`${baseUrl}/user/getPrompts`);
     const data = await response.json();
@@ -11,7 +11,7 @@ export const getPrompts = async () => {
 
     return data;
 };
-// get data by id:-
+// get data by id:-done
 export const getPromptById = async (id) => {
     const response = await fetch(`${baseUrl}/user/getPromptsByUserId/${id}`);
     const data = await response.json();
@@ -39,6 +39,10 @@ export const createPrompt = async (prompt) => {
 
     return data;
 };
+
+
+
+
 // Update data on database:-
 export const updatePrompt = async (prompt) => {
     const response = await fetch(`${baseUrl}/api/prompts`, {

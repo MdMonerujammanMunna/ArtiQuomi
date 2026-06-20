@@ -9,12 +9,17 @@ import { IoBookmark } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa";
 import { BiSolidCopy } from "react-icons/bi";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SingleCard = ({ result }) => {
+
+    const router = useRouter();
     const userData = authClient.useSession();
     const user = userData?.data?.user;
-    console.log(user);
+    // console.log(user);
     const data = result
+    // console.log(data);
     const [copied, setCopied] = useState(false);
     const [booked, setBooked] = useState(false)
     const handleBookmark = () => {
@@ -32,20 +37,23 @@ const SingleCard = ({ result }) => {
             console.error("Failed to copy text: ", err);
         }
     };
+    const isBlocked = user?.plan === "free" && data.visibility === "Private";
     return (
         <div className="min-h-screen my-20 bg-[#070a13] text-gray-300 font-sans selection:bg-[#10b981]/30 pb-12">
             <div className="border-b border-gray-900 bg-[#0a0f1d]/60 backdrop-blur-md sticky top-0 z-50 px-3 md:px-10 py-4">
                 <div className="flex items-center justify-between gap-5">
-                    <Button
-                        className="flex items-center gap-2 text-xs bg-cyan-500/10 text-cyan-400 font-medium uppercase tracking-wider hover:bg-cyan-500/20 "
-                    >
-                        <FiArrowLeft className="group-hover:-translate-x-1 transition-transform text-sm" />
-                        Back to Library
-                    </Button>
+                    <Link href="/AllPrompts/AllData">
+                        <Button
+                            className="flex items-center gap-2 text-xs bg-cyan-500/10 text-cyan-400 font-medium uppercase tracking-wider hover:bg-cyan-500/20 "
+                        >
+                            <FiArrowLeft className="group-hover:-translate-x-1 transition-transform text-sm" />
+                            Back to Library
+                        </Button>
+                    </Link>
 
                     <div className="flex items-center gap-4 text-xs ">
                         <span className="flex items-center gap-1 flex-nowrap"><FiEye /> 0 Views</span>
-                        <span className="flex items-center gap-1 flex-nowrap"><FiCopy /> 10 Copies</span>
+                        <span className="flex items-center gap-1 flex-nowrap"><FiCopy /> 0 Copies</span>
                     </div>
                 </div>
             </div>
@@ -63,44 +71,66 @@ const SingleCard = ({ result }) => {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    <div className="">
+                        <div className=" space-y-8">
+                            <div className="bg-[#0a0f1d] border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl relative">
+                                <div className="bg-[#0d1426] px-6 py-4 border-b border-gray-900/60 ">
+                                    <div className="flex justify-between items-center">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-xs font-mono text-gray-500 ml-2 select-none">prompt_template.md</span>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            {isBlocked ?
+                                                "Subscribe"
+                                                :
+                                                <>
+                                                    <Button
+                                                        size="sm"
+                                                        color={booked ? "success" : "default"}
+                                                        variant="flat"
+                                                        onClick={handleBookmark}
+                                                        className={`rounded-full  transition-all ${booked
+                                                            ? "bg-[#10b981]/20 text-[#10b981]"
+                                                            : "bg-[#10b981]/10 text-[#10b981] hover:bg-[#10b981]/20"
+                                                            }`}
+                                                    >
+                                                        {booked ? <FaCheck size={16} /> : <IoBookmark size={16} />}
+                                                    </Button>
+                                                    <Button
+                                                        size="sm"
+                                                        color={copied ? "success" : "default"}
+                                                        variant="flat"
+                                                        onClick={handleCopy}
+                                                        startContent={copied ? <FiCheck size={14} /> : <FiCopy size={14} />}
+                                                        className={`font-bold text-xs rounded-full transition-all ${copied ? "bg-[#10b981]/20 text-[#10b981]" : "bg-[#10b981]/10 text-[#10b981] hover:bg-[#10b981]/20"
+                                                            }`}
+                                                    >
+                                                        {!copied ? <BiSolidCopy /> : <FaCheck />}
+                                                    </Button>
+                                                </>
+                                            }
 
-                    <div className="col-span-2 space-y-8">
-                        <div className="bg-[#0a0f1d] border border-gray-800/80 rounded-2xl overflow-hidden shadow-2xl relative">
-                            <div className="absolute top-0 left-0 w-1 h-full bg-linear-to-b from-[#10b981] to-purple-600"></div>
-
-                            <div className="bg-[#0d1426] px-6 py-4 border-b border-gray-900/60 flex justify-between items-center">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs font-mono text-gray-500 ml-2 select-none">prompt_template.md</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-3">
-                                    <Button
-                                        size="sm"
-                                        color={booked ? "success" : "default"}
-                                        variant="flat"
-                                        onClick={handleBookmark}
-                                        className={`rounded-full  transition-all ${booked
-                                            ? "bg-[#10b981]/20 text-[#10b981]"
-                                            : "bg-[#10b981]/10 text-[#10b981] hover:bg-[#10b981]/20"
-                                            }`}
-                                    >
-                                        {booked ? <FaCheck size={16} /> : <IoBookmark size={16} />}
-                                    </Button>
-                                    <Button
-                                        size="sm"
-                                        color={copied ? "success" : "default"}
-                                        variant="flat"
-                                        onClick={handleCopy}
-                                        startContent={copied ? <FiCheck size={14} /> : <FiCopy size={14} />}
-                                        className={`font-bold text-xs rounded-full transition-all ${copied ? "bg-[#10b981]/20 text-[#10b981]" : "bg-[#10b981]/10 text-[#10b981] hover:bg-[#10b981]/20"
-                                            }`}
-                                    >
-                                        {!copied ? <BiSolidCopy /> : <FaCheck />}
-                                    </Button>
-                                </div>
-                            </div>
 
-                            <div className="p-6 md:p-8 font-mono text-sm md:text-base leading-relaxed text-purple-300/90 bg-linear-to-b from-[#0a0f1d] to-[#060912] select-all whitespace-pre-wrap">
-                                {data.content}
+                                <div className="p-6 md:p-8 font-mono text-sm md:text-base leading-relaxed text-purple-300/90 bg-linear-to-b from-[#0a0f1d] to-[#060912] select-all whitespace-pre-wrap">{isBlocked
+                                    ?
+                                    <div className="flex justify-center items-center   flex-col p-10 rounded-2xl">
+                                        <h1 className="text-white font-black text-xl mb-2">This prompt is private</h1>
+                                        <p className="text-white text-sm">You need to be a paid user to access this prompt</p>
+                                        <Button
+                                            className="mt-5 px-6 py-2 rounded-xl font-semibold text-white bg-linear-to-r from-emerald-500 to-cyan-500  transition-all duration-300 hover:scale-105 active:scale-95"
+                                        >
+                                            Subscribe Now
+                                        </Button>
+                                    </div>
+                                    :
+                                    <div>
+                                        {data.content}
+                                    </div>}
+                                </div>
+
                             </div>
                         </div>
 
@@ -113,7 +143,6 @@ const SingleCard = ({ result }) => {
                             </p>
                         </div>
                     </div>
-
                     <div className="space-y-6 lg:sticky lg:top-24">
                         <div className="bg-[#0d1527]/40 border  rounded-2xl p-6 space-y-5 shadow-md mb-5">
                             <h3 className="text-xs font-extrabold uppercase tracking-widest text-gray-400 pb-3">Prompt Matrix</h3>
@@ -152,10 +181,13 @@ const SingleCard = ({ result }) => {
                         </div>
 
                     </div>
-
                 </div>
+
+
+
             </div>
         </div>
+
     );
 };
 

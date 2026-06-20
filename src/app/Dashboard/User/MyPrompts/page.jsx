@@ -1,6 +1,13 @@
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 
-const MyPrompts = () => {
+const MyPrompts = async () => {
+    const userSession = await auth.api.getSession({
+        headers: await headers(),
+    });
+    const UserData = userSession.user.id;
+    console.log(UserData);
     return (
         <>
             <h1 className="text-2xl font-bold text-white text-left mb-8">

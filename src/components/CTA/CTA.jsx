@@ -38,7 +38,7 @@ export default function CTA() {
                             <div className="mt-8 flex flex-wrap gap-4">
 
                                 <Link
-                                    href="/prompts"
+                                    href="/AllPrompts/AllData"
                                     className="rounded-xl bg-black px-8 py-3 font-semibold text-white transition duration-300 hover:scale-105 hover:bg-zinc-900"
                                 >
                                     Explore Prompts

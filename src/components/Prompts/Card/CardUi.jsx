@@ -71,14 +71,9 @@ export default function PromptCard({ prompt }) {
                 </div>
                 {/* AI Tool */}
                 <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-2 text-zinc-300">
+                    <div className="flex items-center gap-2 uppercase text-xs font-bold text-zinc-300">
                         <FiCpu className="text-cyan-400" />
                         <span>{prompt.aiTool}</span>
-                    </div>
-
-                    <div className="flex items-center gap-2 text-zinc-300">
-                        <FiCopy className="text-yellow-400" />
-                        <span>{prompt.copyCount}</span>
                     </div>
                 </div>
 
