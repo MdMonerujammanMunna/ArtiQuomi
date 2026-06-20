@@ -13,7 +13,7 @@ export const getPrompts = async () => {
 };
 // get data by id:-
 export const getPromptById = async (id) => {
-    const response = await fetch(`${baseUrl}/api/prompts/${id}`);
+    const response = await fetch(`${baseUrl}/user/getPromptsByUserId/${id}`);
     const data = await response.json();
 
     if (!response.ok) {
