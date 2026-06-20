@@ -11,6 +11,8 @@ import { BiSolidCopy } from "react-icons/bi";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import { PostSavePrompts } from "@/lib/api/Save";
 
 const SingleCard = ({ result }) => {
 
@@ -22,11 +24,19 @@ const SingleCard = ({ result }) => {
     // console.log(data);
     const [copied, setCopied] = useState(false);
     const [booked, setBooked] = useState(false)
-    const handleBookmark = () => {
+    const handleBookmark = async () => {
         setBooked(true);
         setTimeout(() => {
             setBooked(false);
         }, 2000);
+
+        const SaveData = {
+            ...data,
+            saveBy: user?.id,
+            saveDate: new Date().toISOString(),
+        };
+        const response = await PostSavePrompts(SaveData);
+        toast.success("Prompt Saved");
     };
     const handleCopy = async () => {
         try {
