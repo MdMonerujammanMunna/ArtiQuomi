@@ -11,3 +11,15 @@ export const HerogetPrompts = async () => {
 
     return data;
 };
+
+// Reviews:- done
+export const GetReviews = async () => {
+    const response = await fetch(`${baseUrl}/user/getAllReviews`);
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.message);
+    }
+
+    return data;
+};
