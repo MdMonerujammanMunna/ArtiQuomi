@@ -5,10 +5,10 @@ import HeroCard from "@/components/HeroCard/HeroCard";
 import Stats from "@/components/Status/Status";
 import TopCreatorsPage from "@/components/TopCreator/TopCreator";
 import WhyChooseUs from "@/components/WhyChooseUs/ChooseUs";
-import { getUserPrompts } from "@/lib/api/User";
+import { HerogetPrompts } from "@/lib/api/HeroBanner";
 
 export default async function Home() {
-  const response = await getUserPrompts();
+  const response = await HerogetPrompts()
   return (
     <>
       <Hero />

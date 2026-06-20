@@ -11,7 +11,7 @@ const MyPrompts = async () => {
     });
     const UserData = userSession.user.id;
     const userPrompts = await getUserPrompts(UserData);
-    // console.log(userPrompts);
+    console.log(userPrompts);
     return (
         <>
             <h1 className="text-2xl font-bold text-white text-left mb-8">

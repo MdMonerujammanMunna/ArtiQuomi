@@ -12,14 +12,15 @@ import { Avatar, Button, Drawer } from "@heroui/react";
 import Image from "next/image";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 export function DashBoardsideBar() {
     const usesession = authClient.useSession()
     const SignOutClick = async () => {
         await authClient.signOut()
         redirect("/")
     };
-    const [activeTab, setActiveTab] = useState("My Profile")
+    const path = usePathname();
+    const activeTab = path;
     const DashboardSideBar = {
         "user": [
             { icon: IoPersonCircleSharp, label: "My Profile", url: "/Dashboard/User/MyProfile" },
@@ -63,8 +64,8 @@ export function DashBoardsideBar() {
                         <Link
                             key={item.label}
                             href={item.url}
-                            onClick={() => setActiveTab(item.label)}
-                            className={`flex items-center gap-4 rounded-l-sm rounded-none px-5 py-4 font-semibold w-full border-r-4 border-emerald-500 ${activeTab === item.label
+                            // onClick={() => setActiveTab(item.label)}
+                            className={`flex items-center gap-4 rounded-l-sm rounded-none px-5 py-4 font-semibold w-full border-r-4 border-emerald-500 ${activeTab === item.url
                                 ? "font-semibold bg-linear-to-r from-cyan-500 to-emerald-500"
                                 : "border-l-transparent hover:bg-emerald-500"
                                 }`}
@@ -78,12 +79,12 @@ export function DashBoardsideBar() {
                 <div className="mt-auto pt-6 border-t border-white/10 space-y-3">
                     <Link href={"/Dashboard/user/MyProfile"} className="flex items-center gap-2">
                         <Avatar>
-                            <Avatar.Image alt="John Doe" src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3" />
-                            <Avatar.Fallback>JD</Avatar.Fallback>
+                            <Avatar.Image alt={usesession.data?.user?.name} src={usesession.data?.user?.image} />
+                            <Avatar.Fallback>{usesession.data?.user?.name[0]}</Avatar.Fallback>
                         </Avatar>
                         <div className="">
-                            <h1 className="text-xl font-bold">John Doe</h1>
-                            <p className="text-sm text-slate-400">Admin</p>
+                            <h1 className="text-xl font-bold">{usesession.data?.user?.name}</h1>
+                            <p className="text-sm text-slate-400 uppercase">{usesession.data?.user?.role}</p>
                         </div>
                     </Link>
                     <button

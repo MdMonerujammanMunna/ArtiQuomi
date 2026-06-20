@@ -33,7 +33,7 @@ export default function Navbar() {
 
             <header className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
-                <NextLink href="/" className="flex items-center gap-2">
+                <NextLink href="/" className="flex items-center gap-2 underline-none">
                     <Image src="/logo.png" alt="Logo" width={40} height={40} />
 
                     <span className="text-xl font-bold text-white">
@@ -51,7 +51,7 @@ export default function Navbar() {
                             <Link
                                 href={item.href}
                                 color="foreground"
-                                className="group flex items-center gap-1 text-slate-300 hover:text-white"
+                                className="group flex items-center gap-1 text-slate-300 hover:text-white no-underline"
                             >
                                 {item.name}
 
@@ -71,12 +71,12 @@ export default function Navbar() {
                             <>
                                 <Link
                                     href="/LogIn"
-                                    className="flex items-center gap-2 text-emerald-400"
+                                    className="flex items-center gap-2 text-emerald-400 no-underline"
                                 >
                                     <FiLock />
                                     Secure Login
                                 </Link>
-                                <Link href="/SignUpPage">
+                                <Link href="/SignUpPage" className="no-underline">
                                     <Button
                                         as={NextLink}
                                         href="/SignUpPage"
@@ -158,7 +158,7 @@ export default function Navbar() {
                                 <li className="pt-3">
                                     <Link
                                         href="/LogIn"
-                                        className="flex items-center gap-2 text-emerald-400"
+                                        className="flex items-center gap-2 text-emerald-400 no-underline"
                                         onClick={() => setIsMenuOpen(false)}
                                     >
                                         <FiLock />
@@ -167,7 +167,7 @@ export default function Navbar() {
                                 </li>
 
                                 <li className="pt-2">
-                                    <Link href="/SignUpPage">
+                                    <Link href="/SignUpPage" className="no-underline">
                                         <Button
                                             as={NextLink}
                                             href="/SignUpPage"
