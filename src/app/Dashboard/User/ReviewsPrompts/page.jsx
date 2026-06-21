@@ -9,16 +9,16 @@ const ReviewPage = async () => {
         headers: await headers(),
     });
     const UserData = userSession.user.id;
-    const userPrompts = await getUserReviews(UserData);
+    const userReviews = await getUserReviews(UserData);
     return (
         <>
             <h1 className="text-2xl font-bold text-white text-left mb-8">
-                My Prompts
+                My Reviews
             </h1>
             <div className="w-full  rounded-2xl bg-[#0b1220] shadow-sm px-5 py-10 text-center ">
                 {
-                    userPrompts.length !== 0 ?
-                        <UserReviewsTable userPrompts={userPrompts} />
+                    userReviews.length !== 0 ?
+                        <UserReviewsTable userPrompts={userReviews} />
                         :
                         <div className="flex flex-col items-center px-4 py-10 ">
                             <div className="">
@@ -26,11 +26,11 @@ const ReviewPage = async () => {
                             </div>
                             <div className="mt-10">
                                 <h2 className="text-lg font-semibold text-white">
-                                    No Prompts Yet
+                                    No Reviews Yet
                                 </h2>
 
                                 <p className=" mt-2 text-sm">
-                                    You have not created any prompts yet. Start by creating a prompt and get started with ArtiQuomi.
+                                    You have not created any reviews yet. Start by creating a review and get started with ArtiQuomi.
                                 </p>
                             </div>
 

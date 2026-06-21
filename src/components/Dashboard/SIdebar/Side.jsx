@@ -79,8 +79,8 @@ export function DashBoardsideBar() {
                 <div className="mt-auto pt-6 border-t border-white/10 space-y-3">
                     <Link href={"/Dashboard/user/MyProfile"} className="flex items-center gap-2">
                         <Avatar>
-                            <Avatar.Image alt={usesession.data?.user?.name} src={usesession.data?.user?.image} />
-                            <Avatar.Fallback>{usesession.data?.user?.name[0]}</Avatar.Fallback>
+                            <Avatar.Image alt={usesession.data?.user?.name || "User"} src={usesession.data?.user?.image} />
+                            {/* <Avatar.Fallback>{usesession.data?.user?.name[0] || "U"}</Avatar.Fallback> */}
                         </Avatar>
                         <div className="">
                             <h1 className="text-xl font-bold">{usesession.data?.user?.name}</h1>

@@ -3,6 +3,8 @@ import { MdOutlineEditNote } from "react-icons/md";
 import { IoEyeSharp } from "react-icons/io5";
 
 import { Button, Table } from "@heroui/react";
+import { DeleteModal } from "@/components/DeleteModal/ModalDelete";
+import { UpdateModal } from "@/components/UpdateModal/ModalUpdate";
 
 export function TableUser({ userPrompts }) {
     return (
@@ -31,20 +33,8 @@ export function TableUser({ userPrompts }) {
                                         >
                                             <IoEyeSharp />
                                         </Button>
-
-                                        <Button
-                                            size="sm"
-                                            className="min-w-0 h-6 px-2 text-xs bg-emerald-600 text-white"
-                                        >
-                                            <MdOutlineEditNote />
-                                        </Button>
-
-                                        <Button
-                                            size="sm"
-                                            className="min-w-0 h-6 px-2 text-xs bg-red-600 text-white"
-                                        >
-                                            <MdDelete />
-                                        </Button>
+                                        <UpdateModal prompt={prompt} />
+                                        <DeleteModal prompt={prompt} />
                                     </div>
                                 </Table.Cell>
                             </Table.Row>

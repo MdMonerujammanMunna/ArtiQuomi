@@ -4,6 +4,8 @@ import { Button } from '@heroui/react';
 import { headers } from 'next/headers';
 import React from 'react';
 import { FiCheck } from 'react-icons/fi';
+import { IoEyeSharp } from 'react-icons/io5';
+import { MdDelete, MdOutlineEditNote } from 'react-icons/md';
 
 const SavePrompts = async () => {
 
@@ -20,7 +22,25 @@ const SavePrompts = async () => {
 
             {userSave.length !== 0 ? userSave.map((prompt, index) => (
                 <div key={index} className="bg-[#111827] rounded-lg p-4 mb-5">
-                    <p className="text-white font-semibold">{prompt.title}</p>
+                    <div className="flex items-center justify-between gap-5">
+                        <p className="text-white font-semibold">{prompt.title}</p>
+                        <div className="flex items-center gap-2">
+
+                            <Button
+                                size="sm"
+                                className="min-w-0 h-6 px-2 text-xs bg-emerald-600 text-white"
+                            >
+                                <MdOutlineEditNote />
+                            </Button>
+
+                            <Button
+                                size="sm"
+                                className="min-w-0 h-6 px-2 text-xs bg-red-600 text-white"
+                            >
+                                <MdDelete />
+                            </Button>
+                        </div>
+                    </div>
 
                     <code className="block mt-5 text-gray-300 p-4  bg-black rounded-lg">
                         {prompt.content}

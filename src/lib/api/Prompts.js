@@ -46,30 +46,29 @@ export const createPrompt = async (prompt) => {
 // Update data on database:-
 export const updatePrompt = async (prompt) => {
     const response = await fetch(`${baseUrl}/api/prompts`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(prompt),
     });
+
     const data = await response.json();
 
     if (!response.ok) {
-        throw new Error(data.message);
+        throw new Error(data.message || "Update failed");
     }
 
     return data;
 };
 // Delete data on database:-
 export const deletePrompt = async (id) => {
-    const response = await fetch(`${baseUrl}/api/prompts/${id}`, {
+    const response = await fetch(`${baseUrl}/prompts/Delect`, {
         method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
     });
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.message);
-    }
-
-    return data;
+    return response.json();
 };

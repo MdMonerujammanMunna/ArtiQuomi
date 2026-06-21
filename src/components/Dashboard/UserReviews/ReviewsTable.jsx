@@ -1,12 +1,12 @@
 import { MdDelete } from "react-icons/md";
 import { MdOutlineEditNote } from "react-icons/md";
-import { IoEyeSharp } from "react-icons/io5";
+
 
 import { Button, Table } from "@heroui/react";
 
 export function UserReviewsTable({ userPrompts }) {
     const use = userPrompts;
-    console.log(use);
+    // console.log(use);
     return (
         <Table className="rounded-lg">
             <Table.ScrollContainer>
@@ -16,6 +16,7 @@ export function UserReviewsTable({ userPrompts }) {
                         <Table.Column>Email</Table.Column>
                         <Table.Column>Message</Table.Column>
                         <Table.Column>last 3 digit</Table.Column>
+                        <Table.Column>Action</Table.Column>
                     </Table.Header>
                     <Table.Body>
                         {userPrompts.map((prompt, index) => (
@@ -24,7 +25,23 @@ export function UserReviewsTable({ userPrompts }) {
                                 <Table.Cell className={"p-3 text-left"}>{prompt.email}</Table.Cell>
                                 <Table.Cell className={"p-3 text-left"}>{prompt.message}</Table.Cell>
                                 <Table.Cell className={"p-3 text-left"}>{prompt.PathId.slice(-3)}</Table.Cell>
+                                <Table.Cell className={"p-3 text-left"}>
+                                    <div className="flex items-center gap-1">
+                                        <Button
+                                            size="sm"
+                                            className="min-w-0 h-6 px-2 text-xs bg-emerald-600 text-white"
+                                        >
+                                            <MdOutlineEditNote />
+                                        </Button>
 
+                                        <Button
+                                            size="sm"
+                                            className="min-w-0 h-6 px-2 text-xs bg-red-600 text-white"
+                                        >
+                                            <MdDelete />
+                                        </Button>
+                                    </div>
+                                </Table.Cell>
                             </Table.Row>
                         ))}
                     </Table.Body>

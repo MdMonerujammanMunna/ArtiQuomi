@@ -17,6 +17,7 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import { createPrompt } from "@/lib/api/Prompts";
+import { getUserPrompts } from "@/lib/api/User";
 
 export default function AddPromptForm() {
     const Session = authClient.useSession();
