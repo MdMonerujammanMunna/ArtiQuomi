@@ -181,12 +181,12 @@ export default function SignUpPage() {
                             orientation="horizontal"
                             className="flex w-full gap-4 mt-2"
                         >
-                            <Radio className="" value="user" onClick={() => setRole("user")}>
+                            <Radio className="" value="User" onClick={() => setRole("User")}>
                                 <Radio.Content
-                                    onClick={() => setRole("user")}
+                                    onClick={() => setRole("User")}
                                     role="button"
                                     tabIndex={0}
-                                    className={`flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-3 transition-all duration-200 ${role === "user"
+                                    className={`flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-3 transition-all duration-200 ${role === "User"
                                         ? "border-emerald-500 "
                                         : "border-[#26293B]  hover:border-white"
                                         }`}
@@ -195,12 +195,12 @@ export default function SignUpPage() {
                                 </Radio.Content>
                             </Radio>
 
-                            <Radio className="" value="creator" onClick={() => setRole("creator")}>
+                            <Radio className="" value="Creator" onClick={() => setRole("Creator")}>
                                 <Radio.Content
-                                    onClick={() => setRole("creator")}
+                                    onClick={() => setRole("Creator")}
                                     role="button"
                                     tabIndex={0}
-                                    className={`flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-3 transition-all duration-200 ${role === "creator"
+                                    className={`flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-3 transition-all duration-200 ${role === "Creator"
                                         ? "border-emerald-500"
                                         : "border-[#26293B] hover:border-white"
                                         }`}

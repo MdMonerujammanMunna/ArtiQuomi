@@ -1,5 +1,5 @@
 "use client";
-
+import { FaFaceGrinStars } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { MdTipsAndUpdates } from "react-icons/md";
@@ -26,7 +26,7 @@ import { authClient } from "@/lib/auth-client";
 const MyProfile = () => {
     const userSession = authClient.useSession();
     const user = userSession.data?.user;
-    
+
     return (
         <div className="">
             <h1 className="font-bold text-3xl mb-2">Hi! {user?.name} Welcome to Profile </h1>
@@ -160,34 +160,61 @@ const MyProfile = () => {
 
                 {/* UPGRADE CARD */}
                 <Card className="w-full bg-[#0b1220] border border-slate-800 rounded-xl p-6 shadow-2xl">
-                    <Card.Content className="p-0 h-full">
+                    <Card.Content className="p-0 ">
 
-                        <div className="bg-linear-to-b from-[#0b1220] to-[#0f172a] border border-slate-800 rounded-xl p-6 flex flex-col justify-between min-h-80">
+                        <div className="bg-linear-to-b from-[#0b1220] to-[#0f172a] border border-slate-800 rounded-xl p-6 flex flex-col justify-between ">
 
-                            {/* TOP */}
-                            <div className="flex flex-col items-center text-center gap-4">
 
-                                <div className="bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/20 shadow-md">
-                                    <MdTipsAndUpdates className="text-emerald-400 text-2xl" />
-                                </div>
+                            {user?.plan === "free" ?
+                                <>
+                                    <div className="flex flex-col items-center text-center gap-4">
 
-                                <div className="flex flex-col gap-2">
-                                    <h4 className="text-lg font-bold tracking-wide text-white">
-                                        Upgrade to Pro Lifetime
-                                    </h4>
-                                    <p className="text-xs text-gray-400 leading-relaxed max-w-xs">
-                                        Unlock access to all private prompt templates, parameter sets,
-                                        and community reviews for a single one-time contribution of $5.
-                                    </p>
-                                </div>
-                            </div>
+                                        <div className="bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/20 shadow-md">
+                                            <MdTipsAndUpdates className="text-emerald-400 text-2xl" />
+                                        </div>
 
-                            {/* BUTTON */}
-                            <div className="mt-6 w-full">
-                                <Button className="w-full bg-linear-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold py-4 rounded-full shadow-lg shadow-emerald-500/20 text-xs md:text-sm">
-                                    Upgrade Now ($5)
-                                </Button>
-                            </div>
+                                        <div className="flex flex-col gap-2">
+                                            <h4 className="text-lg font-bold tracking-wide text-white">
+                                                Upgrade to Pro Lifetime
+                                            </h4>
+                                            <p className="text-xs text-gray-400 leading-relaxed max-w-xs">
+                                                Unlock access to all private prompt templates, parameter sets,
+                                                and community reviews for a single one-time contribution of $15.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* BUTTON */}
+                                    <div className="mt-6 w-full">
+                                        <form action={"/api/Checkout_session"} method="POST">
+                                            <Button type="submit" className="w-full bg-linear-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold py-4 rounded-full shadow-lg shadow-emerald-500/20 text-xs md:text-sm">
+                                                Upgrade Now ($15)
+                                            </Button>
+                                        </form>
+                                    </div>
+                                </>
+                                :
+
+                                <>
+                                    <div className="flex flex-col items-center text-center gap-4">
+
+                                        <div className="bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/20 shadow-md">
+                                            <FaFaceGrinStars className="text-emerald-400 text-2xl" />
+                                        </div>
+
+                                        <div className="flex flex-col gap-2">
+                                            <h4 className="text-lg font-bold tracking-wide text-white">
+                                                You are already a Pro User
+                                            </h4>
+                                            <p className="text-xs text-gray-400 leading-relaxed max-w-xs">
+                                                Thank you for being a Pro User. You can now enjoy all the features of Artiquomi.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </>
+                            }
+
+
 
                         </div>
 

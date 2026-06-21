@@ -145,7 +145,7 @@ export function UpdateModal({ prompt }) {
                                     </label>
                                     <select name="visibility" defaultValue={prompt.visibility} className={`${customInputClass} [&>option]:bg-zinc-900`}>
                                         <option value="Public">Public (Visible to marketplace once approved)</option>
-                                        <option value="Private">Private (Visible only to you)</option>
+                                        <option value="Private">Private (Visible only to Pro User)</option>
                                     </select>
                                 </div>
 
