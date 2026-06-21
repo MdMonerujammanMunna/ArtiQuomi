@@ -3,6 +3,7 @@ import { MdOutlineEditNote } from "react-icons/md";
 
 
 import { Button, Table } from "@heroui/react";
+import ReviewDelete from "@/components/ReviewDelete/ReviewDelete";
 
 export function UserReviewsTable({ userPrompts }) {
     const use = userPrompts;
@@ -26,21 +27,7 @@ export function UserReviewsTable({ userPrompts }) {
                                 <Table.Cell className={"p-3 text-left"}>{prompt.message}</Table.Cell>
                                 <Table.Cell className={"p-3 text-left"}>{prompt.PathId.slice(-3)}</Table.Cell>
                                 <Table.Cell className={"p-3 text-left"}>
-                                    <div className="flex items-center gap-1">
-                                        <Button
-                                            size="sm"
-                                            className="min-w-0 h-6 px-2 text-xs bg-emerald-600 text-white"
-                                        >
-                                            <MdOutlineEditNote />
-                                        </Button>
-
-                                        <Button
-                                            size="sm"
-                                            className="min-w-0 h-6 px-2 text-xs bg-red-600 text-white"
-                                        >
-                                            <MdDelete />
-                                        </Button>
-                                    </div>
+                                    <ReviewDelete prompt={prompt} />
                                 </Table.Cell>
                             </Table.Row>
                         ))}
