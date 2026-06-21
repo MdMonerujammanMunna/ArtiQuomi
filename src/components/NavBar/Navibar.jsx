@@ -21,7 +21,7 @@ export default function Navbar() {
     const navItems = [
         { name: "Home", href: "/" },
         { name: "All Prompts", href: "/AllPrompts/AllData", dropdown: true },
-        ...(data?.user ? [{ name: "Dashboard", href: `/Dashboard/User/MyProfile` }] : []),
+        ...(data?.user ? [{ name: "Dashboard", href: `/Dashboard/${data?.user?.role}/MyProfile` }] : []),
     ];
     if (pathname.includes("/Dashboard")) {
         return

@@ -130,11 +130,13 @@ const SingleCard = ({ result }) => {
                                     <div className="flex justify-center items-center   flex-col p-10 rounded-2xl">
                                         <h1 className="text-white font-black text-xl mb-2">This prompt is private</h1>
                                         <p className="text-white text-sm">You need to be a paid user to access this prompt</p>
-                                        <Button
-                                            className="mt-5 px-6 py-2 rounded-xl font-semibold text-white bg-linear-to-r from-emerald-500 to-cyan-500  transition-all duration-300 hover:scale-105 active:scale-95"
-                                        >
-                                            Subscribe Now
-                                        </Button>
+                                        <Link href="/Payment">
+                                            <Button
+                                                className="mt-5 px-6 py-2 rounded-xl font-semibold text-white bg-linear-to-r from-emerald-500 to-cyan-500  transition-all duration-300 hover:scale-105 active:scale-95"
+                                            >
+                                                Subscribe Now
+                                            </Button>
+                                        </Link>
                                     </div>
                                     :
                                     <div>
@@ -182,7 +184,9 @@ const SingleCard = ({ result }) => {
                         <div className="bg-[#0d1527]/40 border  p-5 rounded-2xl shadow-md mb-10">
                             <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-5">Curated By</h4>
                             <div className="flex items-center gap-3">
-                                <Avatar src={user?.image} name={user?.name} fallback={<FiUser className="text-gray-400" />} className="w-10 h-10 border border-gray-700 bg-gray-800 text-white" />
+                                <Avatar className="w-10 h-10 border border-gray-700 bg-gray-800 text-white" >
+                                    <Avatar.Image alt={user?.name || "User"} src={user?.image} />
+                                </Avatar>
                                 <div className="overflow-hidden">
                                     <h4 className="text-sm font-bold text-white truncate">{user?.name}</h4>
                                     <p className="text-xs text-gray-500 truncate">{user?.email}</p>

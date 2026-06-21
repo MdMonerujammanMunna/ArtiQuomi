@@ -22,10 +22,11 @@ import {
     FaTelegramPlane,
 } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 
 const MyProfile = () => {
     const userSession = authClient.useSession();
-    const user = userSession.data?.user;
+    const user = userSession?.data?.user;
 
     return (
         <div className="">
@@ -44,11 +45,9 @@ const MyProfile = () => {
 
                             {/* AVATAR */}
                             <div className="relative p-1 rounded-full bg-linear-to-tr from-emerald-500 via-cyan-500 to-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.25)] shrink-0">
-                                <Avatar
-                                    src={user?.image}
-                                    className="w-32 h-32 rounded-full object-cover"
-                                    alt="User Avatar"
-                                />
+                                <Avatar className="w-32 h-32 rounded-full object-cover">
+                                    <Avatar.Image alt={user?.name || "User"} src={user?.image} />
+                                </Avatar>
                             </div>
 
                             {/* INFO */}
@@ -185,13 +184,12 @@ const MyProfile = () => {
                                     </div>
 
                                     {/* BUTTON */}
-                                    <div className="mt-6 w-full">
-                                        <form action={"/api/Checkout_session"} method="POST">
-                                            <Button type="submit" className="w-full bg-linear-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold py-4 rounded-full shadow-lg shadow-emerald-500/20 text-xs md:text-sm">
-                                                Upgrade Now ($15)
-                                            </Button>
-                                        </form>
-                                    </div>
+
+                                    <Link href="/Payment" className="mt-6 w-full">
+                                        <Button className="w-full bg-linear-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold py-4 rounded-full shadow-lg shadow-emerald-500/20 text-xs md:text-sm">
+                                            Upgrade Now ($15)
+                                        </Button>
+                                    </Link>
                                 </>
                                 :
 
