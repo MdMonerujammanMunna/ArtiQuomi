@@ -1,11 +1,10 @@
+import SaveDelete from '@/components/SaveDelete/SaveDelete';
+import { DeleteSavePrompts } from '@/lib/api/Save';
 import { getUserSavePrompts } from '@/lib/api/User';
 import { auth } from '@/lib/auth';
 import { Button } from '@heroui/react';
 import { headers } from 'next/headers';
 import React from 'react';
-import { FiCheck } from 'react-icons/fi';
-import { IoEyeSharp } from 'react-icons/io5';
-import { MdDelete, MdOutlineEditNote } from 'react-icons/md';
 
 const SavePrompts = async () => {
 
@@ -14,6 +13,8 @@ const SavePrompts = async () => {
     });
     const UserData = userSession.user.id;
     const userSave = await getUserSavePrompts(UserData);
+    // console.log(userSave);
+
     return (
         <>
             <h1 className="text-2xl font-bold text-white text-left mb-8">
@@ -25,20 +26,7 @@ const SavePrompts = async () => {
                     <div className="flex items-center justify-between gap-5">
                         <p className="text-white font-semibold">{prompt.title}</p>
                         <div className="flex items-center gap-2">
-
-                            <Button
-                                size="sm"
-                                className="min-w-0 h-6 px-2 text-xs bg-emerald-600 text-white"
-                            >
-                                <MdOutlineEditNote />
-                            </Button>
-
-                            <Button
-                                size="sm"
-                                className="min-w-0 h-6 px-2 text-xs bg-red-600 text-white"
-                            >
-                                <MdDelete />
-                            </Button>
+                            <SaveDelete prompt={prompt} />
                         </div>
                     </div>
 

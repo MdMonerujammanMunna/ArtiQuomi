@@ -40,10 +40,7 @@ export const createPrompt = async (prompt) => {
     return data;
 };
 
-
-
-
-// Update data on database:-
+// Update data on database:- done
 export const updatePrompt = async (prompt) => {
     const response = await fetch(`${baseUrl}/api/prompts`, {
         method: "PATCH",
@@ -61,7 +58,7 @@ export const updatePrompt = async (prompt) => {
 
     return data;
 };
-// Delete data on database:-
+// Delete data on database:- done
 export const deletePrompt = async (id) => {
     const response = await fetch(`${baseUrl}/prompts/Delect`, {
         method: "DELETE",

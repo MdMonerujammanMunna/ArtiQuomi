@@ -16,3 +16,15 @@ export const PostSavePrompts = async (SaveData) => {
 
     return data;
 };
+
+// Save data delete on database:-
+export const DeleteSavePrompts = async (id) => {
+    const response = await fetch(`${baseUrl}/user/deleteSaveBookMark`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+    });
+    return response.json();
+};

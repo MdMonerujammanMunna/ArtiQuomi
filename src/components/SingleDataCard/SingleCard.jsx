@@ -36,6 +36,7 @@ const SingleCard = ({ result }) => {
             saveDate: new Date().toISOString(),
         };
         const response = await PostSavePrompts(SaveData);
+        console.log(response);
         toast.success("Prompt Saved");
     };
     const handleCopy = async () => {
