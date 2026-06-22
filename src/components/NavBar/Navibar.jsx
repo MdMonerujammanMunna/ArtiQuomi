@@ -11,6 +11,7 @@ import { authClient } from "@/lib/auth-client";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+    const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { data, isPending } = authClient.useSession();
@@ -18,10 +19,14 @@ export default function Navbar() {
     const SignOutClick = async () => {
         await authClient.signOut();
     };
+    if (isPending) return null;
+
     const navItems = [
         { name: "Home", href: "/" },
         { name: "All Prompts", href: "/AllPrompts/AllData", dropdown: true },
-        ...(data?.user ? [{ name: "Dashboard", href: `/Dashboard/${data?.user?.role}/MyProfile` }] : []),
+        ...(user
+            ? [{ name: "Dashboard", href: `/Dashboard/${user.role}/MyProfile` }]
+            : []),
     ];
     if (pathname.includes("/Dashboard")) {
         return

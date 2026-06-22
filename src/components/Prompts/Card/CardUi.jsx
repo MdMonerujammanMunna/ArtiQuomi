@@ -11,8 +11,16 @@ import {
     FiLock,
     FiUnlock,
 } from "react-icons/fi";
-
+// approved rejected pending
 export default function PromptCard({ prompt }) {
+    {
+        if (prompt.status === "pending") {
+            return
+        }
+        if (prompt.status === "rejected") {
+            return
+        }
+    }
     return (
         <Card className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden  hover:border-emerald-500 transition-all duration-300">
 

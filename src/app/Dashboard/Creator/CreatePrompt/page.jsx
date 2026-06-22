@@ -11,13 +11,12 @@ import {
     FiEye,
     FiAlignJustify
 } from "react-icons/fi";
-import { Button } from "@heroui/react"; // Hero UI v3.2.1
+import { createCreatoerPrompt } from "@/lib/api/Creator/Prompts";
 import { uploadImage } from "@/lib/ImageUpload";
 import Image from "next/image";
+import { Button } from "@heroui/react";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
-import { createPrompt } from "@/lib/api/Prompts";
-// import { getUserPrompts } from "@/lib/api/User";
 
 export default function AddPromptForm() {
     const categories = [
@@ -41,6 +40,7 @@ export default function AddPromptForm() {
         "Mistral"
     ];
     const Session = authClient.useSession();
+    // console.log(Session.data.user);
     const [thumbnail, setThumbnail] = useState(null);
     const [previewUrl, setPreviewUrl] = useState("");
     const handleImageChange = (e) => {
@@ -81,7 +81,7 @@ export default function AddPromptForm() {
                 status: "pending",
                 createdAt: new Date(),
             };
-            const result = await createPrompt(formValues);
+            const result = await createCreatoerPrompt(formValues);
             toast.success("Prompt created successfully!");
 
         } catch (error) {

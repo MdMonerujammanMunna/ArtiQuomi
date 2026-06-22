@@ -29,7 +29,7 @@ const MyProfile = () => {
     const user = userSession?.data?.user;
     return (
         <div className="">
-            <h1 className="font-bold text-3xl mb-2">Hi! {user?.name} Welcome to Profile </h1>
+            <h1 className="font-bold text-3xl mb-2">Hi! Welcome to Profile </h1>
             <p className="text-sm text-slate-400 mb-10">
                 Manage your profile, view your dashboard, details and more.
             </p>

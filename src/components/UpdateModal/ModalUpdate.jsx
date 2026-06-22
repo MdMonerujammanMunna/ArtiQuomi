@@ -9,8 +9,29 @@ import { useState } from "react";
 import { BiEnvelope } from "react-icons/bi";
 import { FiAlignJustify, FiCpu, FiEye, FiFileText, FiFolder, FiImage, FiTag, FiTrendingUp } from "react-icons/fi";
 import { MdOutlineEditNote } from "react-icons/md";
+import { toast } from "react-toastify";
 
 export function UpdateModal({ prompt }) {
+    const categories = [
+        "AI Prompts & Agents",
+        "Creative Writing",
+        "Coding & Debugging",
+        "Business & Marketing",
+        "Social Media Content",
+        "Study & Education",
+        "Design & Branding",
+        "Resume & Career",
+    ];
+    const aiTools = [
+        "ChatGPT",
+        "DeepSeek",
+        "Grok",
+        "Claude",
+        "Gemini",
+        "Perplexity AI",
+        "LLaMA",
+        "Mistral"
+    ];
     const router = useRouter();
     const id = prompt?._id
     const handleSubmit = async (e) => {
@@ -19,6 +40,7 @@ export function UpdateModal({ prompt }) {
         const user = Object.fromEntries(formData.entries());
         const WithidData = { ...user, id }
         const data = await updatePrompt(WithidData);
+        toast.success("Data updated successfully");
         router.refresh();
     }
     const customInputClass = "text-xs border-emerald-500 w-full bg-transparent border text-white p-2.5 rounded-md outline-none transition-all duration-200 focus:border-cyan-500";
@@ -89,11 +111,9 @@ export function UpdateModal({ prompt }) {
                                             <FiFolder /> Category
                                         </label>
                                         <select name="category" defaultValue={prompt.category} className={`${customInputClass} [&>option]:bg-zinc-900`}>
-                                            <option value="">Select Category</option>
-                                            <option value="photography">Photography</option>
-                                            <option value="coding">Coding & Development</option>
-                                            <option value="copywriting">Copywriting</option>
-                                            <option value="illustrations">Illustrations & Vector</option>
+                                            {categories.map((category, index) => (
+                                                <option key={index} value={category}>{category}</option>
+                                            ))}
                                         </select>
                                     </div>
 
@@ -102,11 +122,9 @@ export function UpdateModal({ prompt }) {
                                             <FiCpu /> AI Tool
                                         </label>
                                         <select name="aiTool" defaultValue={prompt.aiTool} className={`${customInputClass} [&>option]:bg-zinc-900`}>
-                                            <option value="">Select Targeted Tool</option>
-                                            <option value="midjourney">Midjourney</option>
-                                            <option value="chatgpt">ChatGPT</option>
-                                            <option value="stable-diffusion">Stable Diffusion</option>
-                                            <option value="claude">Claude AI</option>
+                                            {aiTools.map((category, index) => (
+                                                <option key={index} value={category}>{category}</option>
+                                            ))}
                                         </select>
                                     </div>
                                 </div>

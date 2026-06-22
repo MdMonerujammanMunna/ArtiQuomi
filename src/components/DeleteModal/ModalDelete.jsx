@@ -4,6 +4,7 @@ import { deletePrompt } from "@/lib/api/Prompts";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
 
 export function DeleteModal({ prompt }) {
     const router = useRouter();
@@ -11,6 +12,7 @@ export function DeleteModal({ prompt }) {
         const id = prompt._id;
         // console.log(id);
         const dataDelete = await deletePrompt(id);
+        toast.error("Prompt deleted successfully");
         router.refresh();
     };
     return (

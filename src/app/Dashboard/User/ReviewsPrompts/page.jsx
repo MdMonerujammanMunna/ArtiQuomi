@@ -21,13 +21,11 @@ const ReviewPage = async () => {
                         <UserReviewsTable userPrompts={userReviews} />
                         :
                         <div className="flex flex-col items-center px-4 py-10 ">
-                            <div className="">
-                                <span className="text-5xl p-4 bg-linear-to-r from-cyan-500 to-emerald-500 rounded-full">📦</span>
-                            </div>
+                            <span className="text-5xl p-4 bg-linear-to-r from-cyan-500 to-emerald-500 rounded-full">📦</span>
                             <div className="mt-10">
-                                <h2 className="text-lg font-semibold text-white">
+                                <h1 className="text-lg font-semibold text-white">
                                     No Reviews Yet
-                                </h2>
+                                </h1>
 
                                 <p className=" mt-2 text-sm">
                                     You have not created any reviews yet. Start by creating a review and get started with ArtiQuomi.

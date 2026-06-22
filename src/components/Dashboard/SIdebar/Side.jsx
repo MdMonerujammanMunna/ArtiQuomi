@@ -32,7 +32,8 @@ export function DashBoardsideBar() {
             { icon: BiSolidMessage, label: "My Reviews", url: "/Dashboard/User/ReviewsPrompts" },
         ],
         "Creator": [
-            { icon: GoHomeFill, label: "Home", url: "/Dashboard/Creator/MyProfile" },
+            { icon: IoPersonCircleSharp, label: "My Profile", url: "/Dashboard/Creator/MyProfile" },
+            { icon: GoHomeFill, label: "Home", url: "/Dashboard/Creator/Home" },
             { icon: RiAddCircleFill, label: "Create Prompt", url: "/Dashboard/Creator/CreatePrompt" },
             { icon: FaBookOpen, label: "My Prompts", url: "/Dashboard/Creator/MyPrompts" },
         ],
