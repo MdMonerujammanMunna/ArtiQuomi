@@ -10,6 +10,7 @@ const MyPrompts = async () => {
         headers: await headers(),
     });
     const UserData = userSession.user.id;
+    // console.log(UserData);
     const userPrompts = await getUserPrompts(UserData);
     // console.log(userPrompts);
     return (
