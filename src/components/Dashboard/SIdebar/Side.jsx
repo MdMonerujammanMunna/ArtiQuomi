@@ -16,6 +16,7 @@ import { redirect, usePathname } from "next/navigation";
 import { GoHomeFill } from "react-icons/go";
 export function DashBoardsideBar() {
     const usesession = authClient.useSession()
+    // console.log(usesession)
     const SignOutClick = async () => {
         await authClient.signOut()
         redirect("/")
@@ -78,7 +79,7 @@ export function DashBoardsideBar() {
 
                 })}
                 <div className="mt-auto pt-6 border-t border-white/10 space-y-3">
-                    <Link href={`/Dashboard/${usesession.data?.user?.role}/MyProfile`} className="flex items-center gap-2">
+                    <Link href={`/Dashboard/${usesession?.data?.user?.role}/MyProfile`} className="flex items-center gap-2">
                         <Avatar>
                             <Avatar.Image alt={usesession.data?.user?.name || "User"} src={usesession.data?.user?.image} />
                             {/* <Avatar.Fallback>{usesession.data?.user?.name[0] || "U"}</Avatar.Fallback> */}

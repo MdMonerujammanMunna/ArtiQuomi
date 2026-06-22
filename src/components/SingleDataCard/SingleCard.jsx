@@ -21,8 +21,9 @@ const SingleCard = ({ result, id }) => {
     const pathid = id;
     const router = useRouter();
     const userData = authClient.useSession();
-    const user = userData?.data?.user;
-    // console.log(user);
+    const user = userData?.data?.session;
+    const SessionUserid = user?.id;
+    // console.log(SessionUserid);
     const data = result
     // console.log(data);
     const [copied, setCopied] = useState(false);
@@ -32,13 +33,20 @@ const SingleCard = ({ result, id }) => {
         setTimeout(() => {
             setBooked(false);
         }, 2000);
+        const saveData = {
 
-        const SaveData = {
-            ...data,
-            saveBy: user?.id,
-            saveDate: new Date().toISOString(),
+            UserId: data.userId,
+            UserName: data.UserName,
+            title: data.title,
+            content: data.content,
+            description: data.description,
+            promptId: data._id,
+            userId: user?.id,
+            userName: user?.name,
+            saveDate: new Date(),
         };
-        const dataresponse = await PostSavePrompts(SaveData);
+        // console.log(data)
+        const dataresponse = await PostSavePrompts(saveData);
         const response = await SavePrompts(pathid);
         toast.success("Prompt copied to clipboard");
         router.refresh()

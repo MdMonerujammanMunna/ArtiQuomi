@@ -4,7 +4,7 @@ import { ReportPrompt } from "@/lib/api/Report";
 import { authClient } from "@/lib/auth-client";
 // import { Envelope } from "@gravity-ui/icons";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
-import { FaLayerGroup } from "react-icons/fa6";
+import { TbMessageReportFilled } from "react-icons/tb";
 import { toast } from "react-toastify";
 
 export function ReportUserModal({ data }) {
@@ -37,10 +37,10 @@ export function ReportUserModal({ data }) {
             <Button
                 size="sm"
                 variant="flat"
-                className={`font-bold text-xs rounded-full transition-all bg-[#10b981]/20 text-emerald-500" "
+                className={`font-bold text-xs rounded-full transition-all bg-[#b91c1c]/20 text-emerald-500" "
                                                             }`}
             >
-                <FaLayerGroup className="text-emerald-500" />
+                <TbMessageReportFilled className="text-red-500" />
             </Button>
 
             <Modal.Backdrop>

@@ -1,8 +1,8 @@
 import SaveDelete from '@/components/SaveDelete/SaveDelete';
-import { DeleteSavePrompts } from '@/lib/api/Save';
+// import { DeleteSavePrompts } from '@/lib/api/Save';
 import { getUserSavePrompts } from '@/lib/api/User';
 import { auth } from '@/lib/auth';
-import { Button } from '@heroui/react';
+// import { Button } from '@heroui/react';
 import { headers } from 'next/headers';
 import React from 'react';
 
@@ -11,10 +11,14 @@ const SavePrompts = async () => {
     const userSession = await auth.api.getSession({
         headers: await headers(),
     });
-    const UserData = userSession.user.id;
-    const userSave = await getUserSavePrompts(UserData);
-    // console.log(userSave);
 
+    if (!userSession?.user?.id) {
+        return <p>Please login first</p>;
+    }
+
+    const UserData = userSession.session.id;
+    // console.log(UserData);
+    const userSave = await getUserSavePrompts(UserData);
     return (
         <>
             <h1 className="text-2xl font-bold text-white text-left mb-8">

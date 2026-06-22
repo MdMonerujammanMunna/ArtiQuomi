@@ -8,8 +8,10 @@ import { toast } from 'react-toastify';
 
 const SaveDelete = ({ prompt }) => {
     const router = useRouter();
+    // console.log(prompt);
     const SaveDelete = async () => {
-        const id = prompt._id;
+        const id = prompt.promptId;
+        // console.log(id);
         const savedelete = await DeleteSavePrompts(id);
         toast.error("Saved Prompt Deleted");
         router.refresh();
