@@ -64,10 +64,12 @@ export const updatePrompt = async (prompt) => {
 };
 // Delete data on database:- done
 export const deletePrompt = async (id) => {
+    const token = await authClient.token()
     const response = await fetch(`${baseUrl}/prompts/Delect`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token?.data?.token}`
         },
         body: JSON.stringify({ id }),
     });

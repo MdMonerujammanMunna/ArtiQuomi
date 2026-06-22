@@ -9,10 +9,12 @@ export default async function SinglePrompt({ params }) {
     // console.log(id);
     const result = await getPromptById(id);
     const reviews = await getReviewsByPathId(id);
+    const ProUser = result.visibility;
+    // console.log(ProUser);
     return (
         <>
             <SingleCard id={id} result={result} />
-            <ReviewSection id={id} reviews={reviews} />
+            <ReviewSection id={id} reviews={reviews} ProUser={ProUser} />
         </>
     );
 }

@@ -14,6 +14,8 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import { copyPrompt, SavePrompts } from "@/lib/api/Copy";
 import { PostSavePrompts } from "@/lib/api/Save";
+import { FaLayerGroup } from "react-icons/fa6";
+import { ReportUserModal } from "../ReportUserModal/ReportUserModal";
 
 const SingleCard = ({ result, id }) => {
     const pathid = id;
@@ -53,6 +55,7 @@ const SingleCard = ({ result, id }) => {
             console.error("Failed to copy text: ", err);
         }
     };
+
     const isBlocked = user?.plan === "free" && data.visibility === "Private";
     return (
         <div className="min-h-screen my-20 bg-[#070a13] text-gray-300 font-sans selection:bg-[#10b981]/30 pb-12">
@@ -123,6 +126,7 @@ const SingleCard = ({ result, id }) => {
                                                     >
                                                         {!copied ? <BiSolidCopy /> : <FaCheck />}
                                                     </Button>
+                                                    <ReportUserModal data={data} />
                                                 </>
                                             }
 
@@ -152,17 +156,21 @@ const SingleCard = ({ result, id }) => {
                             </div>
                         </div>
 
-                        <div className="bg-[#0d1527]/30 border border-gray-800/40 rounded-2xl p-6 shadow-sm my-10 ">
+                        <div className="bg-[#0d1527]/30 rounded-2xl p-6 shadow-sm my-10 ">
                             <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-3 flex items-center gap-2">
                                 <FiBookOpen className="text-[#10b981]" /> Usage Instructions
                             </h3>
-                            <p className="text-gray-400 text-sm leading-relaxed bg-[#070a13]/50 p-4 rounded-xl border border-gray-900/60">
-                                i am a prompt template for a developer who is looking to build a full stack application using Next.js, MongoDB, and Mongoose. The prompt should be able to generate a complete and functional application with all the necessary components and functionality, including user authentication, data storage, and CRUD operations. The prompt should also include instructions on how to deploy the application to a cloud platform such as Vercel or Heroku.
-                            </p>
+                            {isBlocked ?
+                                <p className="text-gray-400 text-sm leading-relaxed bg-[#070a13]/50 p-4 rounded-xl border border-gray-900/60">You need to be a subscriber to access this information</p>
+                                :
+                                <p className="text-gray-400 text-sm leading-relaxed bg-[#070a13]/50 p-4 rounded-xl border border-gray-900/60">
+                                    Choose a prompt that matches your goal, then copy it with one click and paste it into your favorite AI tool. Replace the placeholder text with your own details to get personalized results. You can save your favorite prompts for quick access later, and upgrade to Premium to unlock exclusive high-quality prompts. Experiment with different prompts and small changes to get the best possible output.
+                                </p>
+                            }
                         </div>
                     </div>
                     <div className="space-y-6 lg:sticky lg:top-24">
-                        <div className="bg-[#0d1527]/40 border  rounded-2xl p-6 space-y-5 shadow-md mb-5">
+                        <div className="bg-[#0d1527]/40  rounded-2xl p-6 space-y-5 shadow-md mb-5">
                             <h3 className="text-xs font-extrabold uppercase tracking-widest text-gray-400 pb-3">Prompt Matrix</h3>
                             <div className="flex justify-between items-center text-sm">
                                 <span className="text-gray-500 flex items-center gap-2"><FiCpu /> AI Engine</span>
@@ -186,7 +194,7 @@ const SingleCard = ({ result, id }) => {
                                 </Chip>
                             </div>
                         </div>
-                        <div className="bg-[#0d1527]/40 border  p-5 rounded-2xl shadow-md mb-10">
+                        <div className="bg-[#0d1527]/40   p-5 rounded-2xl shadow-md mb-10">
                             <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-5">Curated By</h4>
                             <div className="flex items-center gap-3">
                                 <Avatar className="w-10 h-10 border border-gray-700 bg-gray-800 text-white" >

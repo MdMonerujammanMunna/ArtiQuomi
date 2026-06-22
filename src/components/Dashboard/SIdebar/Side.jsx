@@ -13,6 +13,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { redirect, usePathname } from "next/navigation";
+import { GoHomeFill } from "react-icons/go";
 export function DashBoardsideBar() {
     const usesession = authClient.useSession()
     const SignOutClick = async () => {
@@ -22,19 +23,19 @@ export function DashBoardsideBar() {
     const path = usePathname();
     const activeTab = path;
     const DashboardSideBar = {
-        "user": [
+        "User": [
             { icon: IoPersonCircleSharp, label: "My Profile", url: "/Dashboard/User/MyProfile" },
             { icon: RiAddCircleFill, label: "Create Prompt", url: "/Dashboard/User/CreatePrompt" },
             { icon: FaBookOpen, label: "My Prompts", url: "/Dashboard/User/MyPrompts" },
             { icon: IoBookmarks, label: "Saved Prompts", url: "/Dashboard/User/SavePrompts" },
             { icon: BiSolidMessage, label: "My Reviews", url: "/Dashboard/User/ReviewsPrompts" },
         ],
-        "creator": [
-            { icon: IoPersonCircleSharp, label: "My Profile", url: "/Dashboard/Creator/MyProfile" },
+        "Creator": [
+            { icon: GoHomeFill, label: "Home", url: "/Dashboard/Creator/MyProfile" },
             { icon: RiAddCircleFill, label: "Create Prompt", url: "/Dashboard/Creator/CreatePrompt" },
             { icon: FaBookOpen, label: "My Prompts", url: "/Dashboard/Creator/MyPrompts" },
         ],
-        "admin": [
+        "Admin": [
             { icon: IoPersonCircleSharp, label: "All Users", url: "/Dashboard/Admin/MyProfile" },
             { icon: RiAddCircleFill, label: "All Prompts", url: "/Dashboard/Admin/MyPrompts" },
             { icon: FaBookOpen, label: "Reported Prompts", url: "/Dashboard/Admin/ReviewsPrompts" },
@@ -44,7 +45,7 @@ export function DashBoardsideBar() {
 
     const role = usesession.data?.user?.role;
 
-    const navItems = DashboardSideBar[role] || DashboardSideBar["user"];
+    const navItems = DashboardSideBar[role] || DashboardSideBar["User"];
     const AllSide = <>
         <div className="px-6 py-10 text-white flex flex-col h-full">
             <Link href="/" className="flex items-center gap-2 mb-10">
