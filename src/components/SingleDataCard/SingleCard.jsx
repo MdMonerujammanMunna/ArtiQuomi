@@ -22,7 +22,7 @@ const SingleCard = ({ result, id }) => {
     const user = userData?.data?.user;
     // console.log(user);
     const data = result
-    console.log(data);
+    // console.log(data);
     const [copied, setCopied] = useState(false);
     const [booked, setBooked] = useState(false)
     const handleBookmark = async () => {

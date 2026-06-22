@@ -1,3 +1,5 @@
+import { authClient } from "../auth-client";
+
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // get data:-  done
@@ -24,10 +26,12 @@ export const getPromptById = async (id) => {
 };
 // Post data on database:- done
 export const createPrompt = async (prompt) => {
+    const token = await authClient.token()
     const response = await fetch(`${baseUrl}/user/addPrompts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "authorization": `Bearer ${token?.data?.token}`
         },
         body: JSON.stringify(prompt),
     });
