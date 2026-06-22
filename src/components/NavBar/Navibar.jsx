@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
-import { Button, Link } from "@heroui/react";
+import { Avatar, Button, Link } from "@heroui/react";
 import { FiLock } from "react-icons/fi";
 import { FaChevronDown } from "react-icons/fa";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
@@ -88,6 +88,12 @@ export default function Navbar() {
                             </>
                             :
                             <>
+                                <Link href={`/Dashboard/${user?.role}/MyProfile`} className="flex items-center gap-2">
+                                    <Avatar>
+                                        <Avatar.Image alt={user?.name || "User"} src={user?.image} />
+                                        {/* <Avatar.Fallback>{usesession.data?.user?.name[0] || "U"}</Avatar.Fallback> */}
+                                    </Avatar>
+                                </Link>
                                 <Button
                                     onClick={SignOutClick}
                                     className="cursor-pointer flex items-center gap-1 bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"

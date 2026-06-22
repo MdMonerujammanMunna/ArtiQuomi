@@ -12,16 +12,17 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { copyPrompt, SavePrompts } from "@/lib/api/Copy";
 import { PostSavePrompts } from "@/lib/api/Save";
 
-const SingleCard = ({ result }) => {
-
+const SingleCard = ({ result, id }) => {
+    const pathid = id;
     const router = useRouter();
     const userData = authClient.useSession();
     const user = userData?.data?.user;
     // console.log(user);
     const data = result
-    // console.log(data);
+    console.log(data);
     const [copied, setCopied] = useState(false);
     const [booked, setBooked] = useState(false)
     const handleBookmark = async () => {
@@ -35,15 +36,19 @@ const SingleCard = ({ result }) => {
             saveBy: user?.id,
             saveDate: new Date().toISOString(),
         };
-        const response = await PostSavePrompts(SaveData);
-        console.log(response);
-        toast.success("Prompt Saved");
+        const dataresponse = await PostSavePrompts(SaveData);
+        const response = await SavePrompts(pathid);
+        toast.success("Prompt copied to clipboard");
+        router.refresh()
     };
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(data.content);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
+            toast.success("Prompt copied to clipboard");
+            const response = await copyPrompt(pathid);
+            router.refresh()
         } catch (err) {
             console.error("Failed to copy text: ", err);
         }
@@ -63,8 +68,8 @@ const SingleCard = ({ result }) => {
                     </Link>
 
                     <div className="flex items-center gap-4 text-xs ">
-                        <span className="flex items-center gap-1 flex-nowrap"><FiEye /> 0 Views</span>
-                        <span className="flex items-center gap-1 flex-nowrap"><FiCopy /> 0 Copies</span>
+                        <span className="flex items-center gap-1 flex-nowrap"><FiEye /> {data.bookmarkCount} Saved</span>
+                        <span className="flex items-center gap-1 flex-nowrap"><FiCopy /> {data.copyCount} Copies</span>
                     </div>
                 </div>
             </div>

@@ -57,6 +57,7 @@ export default function AddPromptForm() {
                 visibility: userData.visibility,
                 thumbnailImage: imageUrl,
                 copyCount: 0,
+                bookmarkCount: 0,
                 status: "pending",
                 createdAt: new Date(),
             };

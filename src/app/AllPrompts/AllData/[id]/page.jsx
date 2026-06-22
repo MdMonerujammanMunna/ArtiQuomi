@@ -6,11 +6,12 @@ import { getReviewsByPathId } from "@/lib/api/Reviews";
 export default async function SinglePrompt({ params }) {
     const paramso = await params;
     const id = paramso.id;
+    // console.log(id);
     const result = await getPromptById(id);
     const reviews = await getReviewsByPathId(id);
     return (
         <>
-            <SingleCard result={result} />
+            <SingleCard id={id} result={result} />
             <ReviewSection id={id} reviews={reviews} />
         </>
     );
