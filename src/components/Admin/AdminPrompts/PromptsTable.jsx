@@ -3,6 +3,9 @@ import { Button, Table } from "@heroui/react";
 import { IoMdCloseCircle } from "react-icons/io";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { AdminDeleteModal } from "./DeleteModal/ModalDelete";
+import { getPrompts } from "@/lib/api/Prompts";
+import ButtonSucess from "./ApporvedButton/ButtonSucess";
+import ButtonRejected from "./RejectedButton/ButtonRejected";
 const PromptsTableAdmin = ({ userPrompts }) => {
     return (
         <Table className="rounded-lg">
@@ -24,49 +27,26 @@ const PromptsTableAdmin = ({ userPrompts }) => {
                                 <Table.Cell className={"p-3 text-left"}>{prompt.difficultyLevel}</Table.Cell>
                                 <Table.Cell className={"p-3"}>
                                     <div className="flex items-center gap-2">
-                                        {prompt.status === "approved"
+                                        {prompt.status === "Approved"
                                             ?
                                             <div className="flex items-center gap-2">
-                                                <Button
-                                                    size="sm"
-                                                    className="min-w-0 h-6 px-2 text-xs bg-rose-700 text-white"
-                                                >
-                                                    <IoMdCloseCircle />
-                                                </Button>
+                                                <ButtonRejected prompt={prompt} />
                                                 <AdminDeleteModal prompt={prompt} />
                                             </div>
                                             :
-                                            prompt.status === "Rejected"
+                                            prompt.status !== "pending"
                                                 ?
                                                 <div className="flex items-center gap-2">
-                                                    <Button
-                                                        size="sm"
-                                                        className="min-w-0 h-6 px-2 text-xs bg-success text-white"
-                                                    >
-                                                        <IoCheckmarkDoneCircle />
-                                                    </Button>
+                                                    <ButtonSucess prompt={prompt} />
                                                     <AdminDeleteModal prompt={prompt} />
                                                 </div>
                                                 :
                                                 <div className="flex items-center gap-2">
-                                                    <Button
-                                                        size="sm"
-                                                        className="min-w-0 h-6 px-2 text-xs bg-rose-700 text-white"
-                                                    >
-                                                        <IoMdCloseCircle />
-                                                    </Button>
-                                                    <Button
-                                                        size="sm"
-                                                        className="min-w-0 h-6 px-2 text-xs bg-success text-white"
-                                                    >
-                                                        <IoCheckmarkDoneCircle />
-                                                    </Button>
+                                                    <ButtonRejected prompt={prompt} />
+                                                    <ButtonSucess prompt={prompt} />
                                                     <AdminDeleteModal prompt={prompt} />
                                                 </div>
                                         }
-
-
-
                                     </div>
                                 </Table.Cell>
                             </Table.Row>
@@ -74,7 +54,7 @@ const PromptsTableAdmin = ({ userPrompts }) => {
                     </Table.Body>
                 </Table.Content>
             </Table.ScrollContainer>
-        </Table>
+        </Table >
     );
 };
 

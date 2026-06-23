@@ -13,3 +13,19 @@ export const AdmindeletePrompt = async (id) => {
     });
     return response.json();
 };
+
+export const ApprovedUpdatePrompt = async (id, on) => {
+    const data = {
+        srcId: id,
+        status: on
+    };
+    const response = await fetch(`${baseUrl}/Admin/UpdatePrompt`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            // authorization: `Bearer ${token?.data?.token}`
+        },
+        body: JSON.stringify(data)
+    });
+    return response.json();
+}
