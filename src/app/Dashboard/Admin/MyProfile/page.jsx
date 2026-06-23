@@ -54,7 +54,7 @@ const MyProfile = () => {
 
                                 <div className="flex flex-col justify-center gap-1 text-center ">
                                     <h2 className="md:text-2xl text-xl font-bold tracking-wide text-white">
-                                        {user?.name}
+                                        {user?.name.split(" ")[0]}
                                     </h2>
 
                                     <div className="flex md:flex-row flex-col items-center justify-center gap-2 text-gray-400 text-sm mt-1">

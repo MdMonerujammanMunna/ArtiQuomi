@@ -1,26 +1,24 @@
 
-import { TableUser } from "@/components/Dashboard/UserTable/UserTable";
-import { getUserPrompts } from "@/lib/api/User";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import PromptsTableAdmin from "@/components/Admin/AdminPrompts/PromptsTable";
+import { getPrompts } from "@/lib/api/Prompts";
+
 
 
 const MyPrompts = async () => {
-    const userSession = await auth.api.getSession({
-        headers: await headers(),
-    });
-    const UserData = userSession.user.id;
-    const userPrompts = await getUserPrompts(UserData);
+    const userPrompts = await getPrompts();
     // console.log(userPrompts);
     return (
         <>
-            <h1 className="text-2xl font-bold text-white text-left mb-8">
-                My Prompts
-            </h1>
+            <div className="mb-8 flex flex-col  items-start md:flex-row md:items-center justify-between gap-2">
+                <h1 className="text-2xl font-bold text-white text-left ">
+                    All Prompts
+                </h1>
+                <p>Total Prompts:-  {userPrompts.length}</p>
+            </div>
             <div className="w-full  rounded-2xl bg-[#0b1220] shadow-sm px-5 py-10 text-center ">
                 {
                     userPrompts.length !== 0 ?
-                        <TableUser userPrompts={userPrompts} />
+                        <PromptsTableAdmin userPrompts={userPrompts} />
                         :
                         <div className="flex flex-col items-center px-4 py-10 ">
                             <div className="">

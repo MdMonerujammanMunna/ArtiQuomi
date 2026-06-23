@@ -16,6 +16,7 @@ import { redirect, usePathname } from "next/navigation";
 import { GoHomeFill } from "react-icons/go";
 import { FaSquarePollVertical } from "react-icons/fa6";
 import { MdReport } from "react-icons/md";
+import { HiUserGroup } from "react-icons/hi";
 export function DashBoardsideBar() {
     const usesession = authClient.useSession()
     // console.log(usesession)
@@ -40,9 +41,10 @@ export function DashBoardsideBar() {
             { icon: FaBookOpen, label: "My Prompts", url: "/Dashboard/Creator/MyPrompts" },
         ],
         "Admin": [
-            { icon: IoPersonCircleSharp, label: "All Users", url: "/Dashboard/Admin/MyProfile" },
-            { icon: FaBookOpen, label: "All Prompts", url: "/Dashboard/Admin/MyPrompts" },
+            { icon: IoPersonCircleSharp, label: "My Profile", url: "/Dashboard/Admin/MyProfile" },
+            { icon: FaBookOpen, label: "All Prompts", url: "/Dashboard/Admin/AllPrompts" },
             { icon: RiMoneyEuroCircleFill, label: "All Payments", url: "/Dashboard/Admin/AllPayments" },
+            { icon: HiUserGroup, label: "All Users", url: "/Dashboard/Admin/AllUsers" },
             { icon: FaSquarePollVertical, label: "Analytics", url: "/Dashboard/Admin/Analytics" },
             { icon: MdReport, label: "Reported Prompts", url: "/Dashboard/Admin/ReportedPrompts" },
         ]
