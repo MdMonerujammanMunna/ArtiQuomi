@@ -14,7 +14,7 @@ export default function Navbar() {
     const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { data, isPending } = authClient.useSession();
+    const { data, isPending } = authClient?.useSession();
     const user = data?.user;
     const SignOutClick = async () => {
         await authClient.signOut();
@@ -94,7 +94,7 @@ export default function Navbar() {
                             :
                             <>
                                 <Link href={`/Dashboard/${user?.role}/MyProfile`} className="flex items-center gap-2">
-                                    <Avatar>
+                                    <Avatar className="border-2 border-emerald-500">
                                         <Avatar.Image alt={user?.name || "User"} src={user?.image} />
                                         {/* <Avatar.Fallback>{usesession.data?.user?.name[0] || "U"}</Avatar.Fallback> */}
                                     </Avatar>

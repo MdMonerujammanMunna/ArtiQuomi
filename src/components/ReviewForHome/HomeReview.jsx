@@ -18,12 +18,9 @@ export default function ReviewCard({ reviews }) {
 
                             {/* User */}
                             <div className="flex items-center gap-4">
-                                <Avatar
-                                    src={review?.image}
-                                    name={review?.name}
-                                    size="lg"
-                                />
-
+                                <Avatar className="border-2 border-emerald-500">
+                                    <Avatar.Image alt={review?.name} src={review?.image} size="lg" />
+                                </Avatar>
                                 <div>
                                     <h3 className="text-white font-semibold text-lg">
                                         {review?.name}
@@ -60,7 +57,7 @@ export default function ReviewCard({ reviews }) {
                     </Card>
                 ))}
 
-            </div>
+            </div >
         </>
     );
 }

@@ -8,11 +8,9 @@ export default function ReviewCard({ review }) {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <Avatar
-                        src={review?.image}
-                        name={review?.name}
-                        size="md"
-                    />
+                    <Avatar className="border-2 border-emerald-500">
+                        <Avatar.Image alt={review?.name} src={review?.image} size="md" />
+                    </Avatar>
 
                     <div>
                         <h3 className="text-white font-semibold">

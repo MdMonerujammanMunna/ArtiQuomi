@@ -45,7 +45,7 @@ const MyProfile = () => {
                             {/* AVATAR */}
                             <div className="relative p-1 rounded-full bg-linear-to-tr from-emerald-500 via-cyan-500 to-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.25)] shrink-0">
                                 <Avatar className="w-32 h-32 rounded-full object-cover">
-                                    <Avatar.Image alt={user?.name || "User"} src={user?.image} />
+                                    <Avatar.Image alt={user?.name || "Admin"} src={user?.image} />
                                 </Avatar>
                             </div>
 

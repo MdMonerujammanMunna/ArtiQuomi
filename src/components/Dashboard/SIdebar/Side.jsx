@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { TbLayoutSidebarLeftCollapseFilled } from "react-icons/tb";
 import { IoPersonCircleSharp, IoBookmarks } from "react-icons/io5";
-import { RiAddCircleFill } from "react-icons/ri";
+import { RiAddCircleFill, RiMoneyEuroCircleFill } from "react-icons/ri";
 import { BiSolidMessage } from "react-icons/bi";
 import { FaBookOpen } from "react-icons/fa";
 
@@ -14,6 +14,8 @@ import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { redirect, usePathname } from "next/navigation";
 import { GoHomeFill } from "react-icons/go";
+import { FaSquarePollVertical } from "react-icons/fa6";
+import { MdReport } from "react-icons/md";
 export function DashBoardsideBar() {
     const usesession = authClient.useSession()
     // console.log(usesession)
@@ -39,9 +41,10 @@ export function DashBoardsideBar() {
         ],
         "Admin": [
             { icon: IoPersonCircleSharp, label: "All Users", url: "/Dashboard/Admin/MyProfile" },
-            { icon: RiAddCircleFill, label: "All Prompts", url: "/Dashboard/Admin/MyPrompts" },
-            { icon: FaBookOpen, label: "Reported Prompts", url: "/Dashboard/Admin/ReviewsPrompts" },
-            { icon: IoBookmarks, label: "Analytics", url: "/Dashboard/Admin/SavePrompts" },
+            { icon: FaBookOpen, label: "All Prompts", url: "/Dashboard/Admin/MyPrompts" },
+            { icon: RiMoneyEuroCircleFill, label: "All Payments", url: "/Dashboard/Admin/AllPayments" },
+            { icon: FaSquarePollVertical, label: "Analytics", url: "/Dashboard/Admin/Analytics" },
+            { icon: MdReport, label: "Reported Prompts", url: "/Dashboard/Admin/ReportedPrompts" },
         ]
     }
 
