@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 
 export function AdminDeleteModal({ prompt }) {
+    // console.log(prompt);
     const router = useRouter();
     const handleDelete = async () => {
         const id = prompt._id;
