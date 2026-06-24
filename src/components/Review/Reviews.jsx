@@ -11,7 +11,11 @@ export default function ReviewSection({ id, reviews, ProUser }) {
     const getReviews = reviews;
     const [text, setText] = useState("");
 
-    const userData = authClient.useSession();
+    const { data, isPending } = authClient.useSession();
+    if (isPending) {
+        <div className="">Loading...</div>;
+    }
+    const userData = data;
     const user = userData?.data?.user;
     const handleSubmit = async (e) => {
         e.preventDefault();

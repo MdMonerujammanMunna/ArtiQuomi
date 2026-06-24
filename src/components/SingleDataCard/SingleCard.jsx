@@ -17,11 +17,12 @@ import { PostSavePrompts } from "@/lib/api/Save";
 import { FaLayerGroup } from "react-icons/fa6";
 import { ReportUserModal } from "../ReportUserModal/ReportUserModal";
 
-const SingleCard = ({ result, id }) => {
+const SingleCard = ({ result, id, ProUser }) => {
     const pathid = id;
+    const proUserOnly = ProUser
     const router = useRouter();
     const userData = authClient.useSession();
-    const user = userData?.data?.session;
+    const user = userData?.data?.user;
     const SessionUserid = user?.id;
     // console.log(SessionUserid);
     const data = result
@@ -63,8 +64,8 @@ const SingleCard = ({ result, id }) => {
             console.error("Failed to copy text: ", err);
         }
     };
-
-    const isBlocked = user?.plan === "free" && data.visibility === "Private";
+    console.log(proUserOnly, user);
+    const isBlocked = user?.plan === "free" && proUserOnly === "Private";
     return (
         <div className="min-h-screen my-20 bg-[#070a13] text-gray-300 font-sans selection:bg-[#10b981]/30 pb-12">
             <div className="border-b border-gray-900 bg-[#0a0f1d]/60 backdrop-blur-md sticky top-0 z-50 px-3 md:px-10 py-4">

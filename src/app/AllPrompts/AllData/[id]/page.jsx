@@ -13,7 +13,7 @@ export default async function SinglePrompt({ params }) {
     // console.log(ProUser);
     return (
         <>
-            <SingleCard id={id} result={result} />
+            <SingleCard id={id} result={result} ProUser={ProUser} />
             <ReviewSection id={id} reviews={reviews} ProUser={ProUser} />
         </>
     );
