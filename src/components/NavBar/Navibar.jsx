@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { Avatar, Button, Link } from "@heroui/react";
@@ -11,33 +11,58 @@ import { authClient } from "@/lib/auth-client";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-    const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
+
+    const [mounted, setMounted] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { data, isPending } = authClient?.useSession();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const { data, isPending } = authClient.useSession();
     const user = data?.user;
+
     const SignOutClick = async () => {
         await authClient.signOut();
     };
-    if (isPending) return null;
+
+    // Prevent hydration mismatch
+    if (!mounted || isPending) return null;
+
+    if (pathname.includes("/Dashboard")) {
+        return null;
+    }
+    const DashboardSideBar = {
+        "User": [
+            { url: "MyProfile" },
+        ],
+        "Creator": [
+            { url: "Home" }
+        ],
+        "Admin": [
+            { url: "Analytics" }
+        ]
+    }
+
+    const role = user?.role;
+
+    const cata = DashboardSideBar[role] || DashboardSideBar["User"];
+    // console.log()
 
     const navItems = [
         { name: "Home", href: "/" },
         { name: "All Prompts", href: "/AllPrompts/AllData", dropdown: true },
         ...(user
-            ? [{ name: "Dashboard", href: `/Dashboard/${user.role}/MyProfile` }]
+            ? [{ name: "Dashboard", href: `/Dashboard/${user?.role}/${cata[0].url}` }]
             : []),
     ];
-    if (pathname.includes("/Dashboard")) {
-        return
-    }
+
     return (
         <nav className="sticky top-0 z-50 w-full bg-[#030712] backdrop-blur-xl">
-            {/* Top Gradient */}
             <div className="h-0.5 w-full bg-linear-to-r from-cyan-500 to-emerald-500" />
 
             <header className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Logo */}
                 <NextLink href="/" className="flex items-center gap-2 underline-none">
                     <Image src="/logo.png" alt="Logo" width={40} height={40} />
 
@@ -49,7 +74,6 @@ export default function Navbar() {
                     </span>
                 </NextLink>
 
-                {/* Desktop Menu */}
                 <ul className="hidden items-center gap-8 md:flex">
                     {navItems.map((item) => (
                         <li key={item.name}>
@@ -68,11 +92,9 @@ export default function Navbar() {
                     ))}
                 </ul>
 
-                {/* Right Side */}
                 <div className="flex items-center gap-4">
-                    {/* Desktop Buttons */}
                     <div className="hidden items-center gap-5 md:flex">
-                        {!user ?
+                        {!user ? (
                             <>
                                 <Link
                                     href="/LogIn"
@@ -81,35 +103,40 @@ export default function Navbar() {
                                     <FiLock />
                                     Secure Login
                                 </Link>
-                                <Link href="/SignUpPage" className="no-underline">
-                                    <Button
-                                        as={NextLink}
-                                        href="/SignUpPage"
-                                        className="cursor-pointer bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
-                                    >
-                                        Get Started
-                                    </Button>
-                                </Link>
+
+                                <Button
+                                    as={NextLink}
+                                    href="/SignUpPage"
+                                    className="cursor-pointer bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
+                                >
+                                    Get Started
+                                </Button>
                             </>
-                            :
+                        ) : (
                             <>
-                                <Link href={`/Dashboard/${user?.role}/MyProfile`} className="flex items-center gap-2">
+                                <Link
+                                    href={`/Dashboard/${user.role}/MyProfile`}
+                                    className="flex items-center gap-2"
+                                >
                                     <Avatar className="border-2 border-emerald-500">
-                                        <Avatar.Image alt={user?.name || "User"} src={user?.image} />
-                                        {/* <Avatar.Fallback>{usesession.data?.user?.name[0] || "U"}</Avatar.Fallback> */}
+                                        <Avatar.Image
+                                            alt={user.name || "User"}
+                                            src={user.image}
+                                        />
                                     </Avatar>
                                 </Link>
+
                                 <Button
                                     onClick={SignOutClick}
                                     className="cursor-pointer flex items-center gap-1 bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
                                 >
-                                    Sign Out <FaArrowRightFromBracket className="w-4 h-4 ml-1" />
+                                    Sign Out
+                                    <FaArrowRightFromBracket className="w-4 h-4 ml-1" />
                                 </Button>
                             </>
-                        }
+                        )}
                     </div>
 
-                    {/* Mobile Menu Button */}
                     <button
                         className="text-slate-300 md:hidden"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -147,7 +174,6 @@ export default function Navbar() {
                 </div>
             </header>
 
-            {/* Mobile Menu */}
             {isMenuOpen && (
                 <div className="border-t border-[#1E293B] bg-[#0F172A] md:hidden">
                     <ul className="space-y-2 p-4">
@@ -159,12 +185,12 @@ export default function Navbar() {
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     {item.name}
-
                                     {item.dropdown && <FaChevronDown size={12} />}
                                 </Link>
                             </li>
                         ))}
-                        {!user ?
+
+                        {!user ? (
                             <>
                                 <li className="pt-3">
                                     <Link
@@ -178,28 +204,26 @@ export default function Navbar() {
                                 </li>
 
                                 <li className="pt-2">
-                                    <Link href="/SignUpPage" className="no-underline">
-                                        <Button
-                                            as={NextLink}
-                                            href="/SignUpPage"
-                                            className="cursor-pointer bg-linear-to-r w-full from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
-                                        >
-                                            Get Started
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        as={NextLink}
+                                        href="/SignUpPage"
+                                        className="cursor-pointer bg-linear-to-r w-full from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
+                                    >
+                                        Get Started
+                                    </Button>
                                 </li>
                             </>
-                            :
-                            <>
+                        ) : (
+                            <li className="pt-2">
                                 <Button
                                     onClick={SignOutClick}
                                     className="cursor-pointer w-full flex justify-center items-center gap-1 bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
                                 >
-                                    Sign Out <FaArrowRightFromBracket className="w-4 h-4 ml-1" />
+                                    Sign Out
+                                    <FaArrowRightFromBracket className="w-4 h-4 ml-1" />
                                 </Button>
-                            </>
-                        }
-
+                            </li>
+                        )}
                     </ul>
                 </div>
             )}

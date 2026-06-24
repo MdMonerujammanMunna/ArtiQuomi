@@ -64,7 +64,7 @@ const SingleCard = ({ result, id, ProUser }) => {
             console.error("Failed to copy text: ", err);
         }
     };
-    console.log(proUserOnly, user);
+    // console.log(proUserOnly, user);
     const isBlocked = user?.plan === "free" && proUserOnly === "Private";
     return (
         <div className="min-h-screen my-20 bg-[#070a13] text-gray-300 font-sans selection:bg-[#10b981]/30 pb-12">
