@@ -26,3 +26,14 @@ export const AdmindeleteUser = async (id) => {
     });
     return response.json();
 };
+// update user role -done
+export const AdminUpdateUser = async (id, role) => {
+    const response = await fetch(`${baseUrl}/Admin/UpdateUser`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id, role }),
+    });
+    return response.json();
+};
