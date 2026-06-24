@@ -1,20 +1,22 @@
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-// get data:-  done
-export const GetPayment = async () => {
-    const response = await fetch(`${baseUrl}/user/getPayments`);
-    const data = await response.json();
 
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+// get data:-  done
+export const getAllUsers = async () => {
+    const response = await fetch(`${baseUrl}/Admin/getAllUsers`);
+    const data = await response.json();
+    // console.log(data);
     if (!response.ok) {
         throw new Error(data.message);
     }
 
     return data;
 };
-// Delete data on database:- 
-export const AdmindeletePayment = async (id) => {
+
+export const AdmindeleteUser = async (id) => {
     // console.log(id);
     // const token = await authClient.token()
-    const response = await fetch(`${baseUrl}/Admin/DelectePaymet`, {
+    const response = await fetch(`${baseUrl}/Admin/DeleteUser`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",

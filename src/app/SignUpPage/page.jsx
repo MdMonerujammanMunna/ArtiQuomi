@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 export default function SignUpPage() {
     const router = useRouter();
-    const [role, setRole] = useState("user");
+    const [role, setRole] = useState("User");
     const [showPassword, setShowPassword] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
