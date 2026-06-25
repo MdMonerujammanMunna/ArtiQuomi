@@ -17,7 +17,7 @@ export default async function Home() {
       <Stats />
       <HeroCard result={response} />
       <WhyChooseUs />
-      <TopCreatorsPage />
+      {/* <TopCreatorsPage /> */}
       <FAQ />
       <ReviewCard reviews={ReviewData} />
       <CTA />
