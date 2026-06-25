@@ -16,7 +16,8 @@ export default function ReviewSection({ id, reviews, ProUser }) {
         <div className="">Loading...</div>;
     }
     const userData = data;
-    const user = userData?.data?.user;
+    const user = userData?.user;
+    // console.log(user);
     const handleSubmit = async (e) => {
         e.preventDefault();
 
