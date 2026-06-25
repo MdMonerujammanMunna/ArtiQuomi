@@ -129,4 +129,8 @@ ArtiQuomi focuses on making AI prompt sharing **simple**, **organized**, and **s
 
 ## **Md. Monerujjaman Munna**
 
+<<<<<<< HEAD
 ⭐ **If you like this project, don't forget to give it a Star!**
+=======
+⭐ **If you like this project, don't forget to give it a Star!**
+>>>>>>> 01b94a5887138386f2d67b69ced1b4f37b7d1281
