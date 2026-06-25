@@ -103,14 +103,13 @@ export default function Navbar() {
                                     <FiLock />
                                     Secure Login
                                 </Link>
-
-                                <Button
-                                    as={NextLink}
-                                    href="/SignUpPage"
-                                    className="cursor-pointer bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
-                                >
-                                    Get Started
-                                </Button>
+                                <Link href="/SignUpPage">
+                                    <Button
+                                        className="cursor-pointer bg-linear-to-r from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
+                                    >
+                                        Get Started
+                                    </Button>
+                                </Link>
                             </>
                         ) : (
                             <>
@@ -204,13 +203,13 @@ export default function Navbar() {
                                 </li>
 
                                 <li className="pt-2">
-                                    <Button
-                                        as={NextLink}
-                                        href="/SignUpPage"
-                                        className="cursor-pointer bg-linear-to-r w-full from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
-                                    >
-                                        Get Started
-                                    </Button>
+                                    <Link href="/SignUpPage">
+                                        <Button
+                                            className="cursor-pointer bg-linear-to-r w-full from-cyan-500 to-emerald-500 px-6 py-2 rounded-full font-semibold text-black"
+                                        >
+                                            Get Started
+                                        </Button>
+                                    </Link>
                                 </li>
                             </>
                         ) : (

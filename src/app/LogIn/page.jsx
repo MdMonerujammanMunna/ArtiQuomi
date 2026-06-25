@@ -37,7 +37,7 @@ export default function LogIn() {
             >
                 <div className="py-6 text-center ">
                     <div className="flex items-center justify-center mb-5 gap-2">
-                        <Image src="/logo.png" alt="Hireloop Logo" width={70} height={70} style={{ width: "auto", height: "auto" }} />
+                        <Image src="/logo.png" alt="Artiqume Logo" width={70} height={70} style={{ width: "auto", height: "auto" }} />
                         <span className="text-5xl font-bold text-white">
                             Arti{" "}
                             <span className="bg-linear-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">

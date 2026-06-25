@@ -1,7 +1,9 @@
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 // get data:-  done
 export const GetPayment = async () => {
-    const response = await fetch(`${baseUrl}/user/getPayments`);
+    const response = await fetch(`${baseUrl}/Admin/getPayments`, {
+        cache: "no-store",
+    });
     const data = await response.json();
 
     if (!response.ok) {

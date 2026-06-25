@@ -6,8 +6,9 @@ export async function proxy(request) {
     const session = await auth.api.getSession({
         headers: await headers()
     })
+    // console.log(session)
     const { pathname } = request.nextUrl;
-    console.log(session.user.role)
+    // console.log(session.user.role)
     if (!session) {
         return NextResponse.redirect(new URL('/LogIn', request.url))
     }
@@ -29,5 +30,5 @@ export async function proxy(request) {
 }
 
 export const config = {
-    matcher: ["/AllPrompts/AllData:path", "/Dashboard/User/:path*", "/Dashboard/Creator/:path*", "/Dashboard/Admin/:path*"],
+    matcher: ["/AllPrompts/AllData/:path", "/Dashboard/User/:path*", "/Dashboard/Creator/:path*", "/Dashboard/Admin/:path*"],
 }

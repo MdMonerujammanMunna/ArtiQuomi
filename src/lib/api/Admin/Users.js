@@ -3,7 +3,9 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // get data:-  done
 export const getAllUsers = async () => {
-    const response = await fetch(`${baseUrl}/Admin/getAllUsers`);
+    const response = await fetch(`${baseUrl}/Admin/getAllUsers`, {
+        cache: "no-store",
+    });
     const data = await response.json();
     // console.log(data);
     if (!response.ok) {

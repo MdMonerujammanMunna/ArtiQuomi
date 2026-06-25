@@ -2,7 +2,9 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // get data:-  done
 export const HerogetPrompts = async () => {
-    const response = await fetch(`${baseUrl}/user/heroPrompts`);
+    const response = await fetch(`${baseUrl}/user/heroPrompts`, {
+        cache: "no-store",
+    });
     const data = await response.json();
 
     if (!response.ok) {
