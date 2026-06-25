@@ -1,19 +1,20 @@
-```md
-# 🌟 **ArtiQuomi** – AI Prompt Sharing Platform
+# 🚀 ArtiQuomi – AI Prompt Sharing Platform
 
-**ArtiQuomi** is a modern and user-friendly AI prompt sharing platform where users can discover, create, manage, and share high-quality AI prompts. The platform also offers secure authentication, premium memberships, prompt moderation, analytics, reviews, and Stripe payment integration to deliver a seamless experience for AI enthusiasts.
+**ArtiQuomi** is a modern AI prompt sharing platform where users can discover, create, manage, and share high-quality AI prompts. The platform offers secure authentication, premium memberships, prompt moderation, analytics, reviews, and Stripe payment integration to provide a seamless experience for AI enthusiasts.
 
-🚀 **Live Demo:** https://arti-quomi.vercel.app
+## 🌐 Live Demo
+
+🔗 **https://arti-quomi.vercel.app**
 
 ---
 
-# 🎯 **Purpose**
+# 🎯 Purpose
 
-The purpose of this project is to provide a centralized platform where users can easily discover, organize, and share AI prompts.
+The purpose of **ArtiQuomi** is to provide a centralized platform where users can easily discover, organize, and share AI prompts.
 
-This project demonstrates full-stack development skills including:
+This project demonstrates modern full-stack development skills, including:
 
-- 🔐 Better Auth Authentication
+- 🔐 Secure Authentication
 - 👤 User & Admin Dashboard
 - 🗄️ MongoDB Database Management
 - 💳 Stripe Payment Integration
@@ -25,63 +26,57 @@ The platform simplifies prompt management while ensuring security, performance, 
 
 ---
 
-# ✨ **Key Features**
+# ✨ Key Features
 
 - 🤖 **AI Prompt Management**
-
-  Create, edit, update, and delete AI prompts with ease.
+  - Create, edit, update, and delete AI prompts.
+  - Organize prompts efficiently.
 
 - 🔍 **Search Prompts**
+  - Quickly find prompts using the search feature.
 
-  Instantly find prompts using the built-in search functionality.
+- ❤️ **Save Favorite Prompts**
+  - Bookmark prompts for future use.
 
 - 👤 **User Dashboard**
-
-  Manage personal prompts, reviews, premium membership, and account information.
+  - Manage prompts, profile, reviews, and premium membership.
 
 - 👑 **Admin Dashboard**
-
-  Approve or reject prompts, manage users, and monitor platform activities.
+  - Manage users.
+  - Approve or reject prompts.
+  - Monitor platform activities.
 
 - ⭐ **Review System**
-
-  Users can submit reviews and share feedback on prompts.
+  - Submit reviews and ratings.
 
 - 💳 **Premium Membership**
-
-  Upgrade to premium through secure Stripe payment integration.
+  - Upgrade securely using Stripe Checkout.
 
 - 🔐 **Better Auth Authentication**
-
-  Secure authentication with Better Auth and MongoDB Adapter.
+  - Secure authentication with Better Auth.
+  - MongoDB Adapter integration.
 
 - 🛡️ **Role-Based Authorization**
-
-  Separate access control for users and administrators.
+  - Separate permissions for users and admins.
 
 - 🚫 **Protected Routes**
-
-  Dashboard and premium features are accessible only after authentication.
+  - Dashboard and premium pages require authentication.
 
 - 📊 **Dashboard Analytics**
-
-  Visual statistics and charts powered by Recharts.
-
-- 📱 **Responsive Design**
-
-  Fully optimized for mobile, tablet, and desktop devices.
+  - Interactive charts powered by Recharts.
 
 - 🔔 **Toast Notifications**
+  - Instant feedback using React Toastify.
 
-  Instant feedback using React Toastify.
+- 📱 **Responsive Design**
+  - Optimized for mobile, tablet, and desktop.
 
 - 🎨 **Modern UI**
-
-  Clean, responsive, and user-friendly interface built with HeroUI and Tailwind CSS.
+  - Built with HeroUI and Tailwind CSS.
 
 ---
 
-# 🛠️ **Technologies Used**
+# 🛠️ Technologies Used
 
 - **Next.js**
 - **React**
@@ -98,7 +93,7 @@ The platform simplifies prompt management while ensuring security, performance, 
 
 ---
 
-# 📦 **NPM Packages**
+# 📦 NPM Packages
 
 - **@better-auth/mongo-adapter**
 - **better-auth**
@@ -120,17 +115,18 @@ The platform simplifies prompt management while ensuring security, performance, 
 
 ---
 
-# 💡 **Final Note**
+# 💡 Final Note
 
-This project was developed for learning and portfolio purposes to improve full-stack web development skills.
+This project was developed for **learning**, **practice**, and **portfolio** purposes while improving full-stack web development skills.
 
-ArtiQuomi simplifies AI prompt discovery, sharing, and management through modern technologies, secure authentication, and a clean, responsive user experience.
+ArtiQuomi focuses on making AI prompt sharing **simple**, **organized**, and **secure** through modern technologies and a clean user experience.
 
-Any feedback or suggestions are always welcome ❤️
+**Any feedback, suggestions, or contributions are always welcome ❤️**
 
 ---
 
-# 👨‍💻 **Developed By**
+# 👨‍💻 Developed By
 
-## **[Md. Monerujjaman Munna 🚀](https://www.facebook.com/Md.MonerujammanMunna0)**
-```
+## **Md. Monerujjaman Munna**
+
+⭐ **If you like this project, don't forget to give it a Star!**
