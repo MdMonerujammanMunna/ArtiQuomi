@@ -177,7 +177,7 @@ const MyProfile = () => {
                                             </h4>
                                             <p className="text-xs text-gray-400 leading-relaxed max-w-xs">
                                                 Unlock access to all private prompt templates, parameter sets,
-                                                and community reviews for a single one-time contribution of $15.
+                                                and community reviews for a single one-time contribution of $5.
                                             </p>
                                         </div>
                                     </div>
@@ -186,7 +186,7 @@ const MyProfile = () => {
 
                                     <Link href="/Payment" className="mt-6 w-full">
                                         <Button className="w-full bg-linear-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold py-4 rounded-full shadow-lg shadow-emerald-500/20 text-xs md:text-sm">
-                                            Upgrade Now ($15)
+                                            Upgrade Now ($5)
                                         </Button>
                                     </Link>
                                 </>

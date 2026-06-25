@@ -9,7 +9,7 @@ import {
 
 export default function PaymentPage() {
     const prompt = {
-        price: 15,
+        price: 5,
         Featured: ["Instant Access",
             "Lifetime Access",
             "Premium AI Prompt",

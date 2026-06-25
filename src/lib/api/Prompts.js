@@ -4,7 +4,9 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // get data:-  done
 export const getPrompts = async () => {
-    const response = await fetch(`${baseUrl}/user/getPrompts`);
+    const response = await fetch(`${baseUrl}/user/getPrompts`, {
+        cache: "no-store",
+    });
     const data = await response.json();
 
     if (!response.ok) {

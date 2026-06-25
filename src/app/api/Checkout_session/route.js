@@ -18,7 +18,8 @@ export async function POST() {
             customer_email: useData?.email,
             line_items: [
                 {
-                    price: 'price_1TkiIsFGWqkx8LnDpgdaUQak',
+                    // price: 'price_1TkiIsFGWqkx8LnDpgdaUQak',
+                    price: 'price_1TmGGCFGWqkx8LnDr0aymwsb',
                     quantity: 1,
                 },
             ],

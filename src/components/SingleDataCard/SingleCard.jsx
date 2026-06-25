@@ -26,7 +26,7 @@ const SingleCard = ({ result, id, ProUser }) => {
 
     const [copied, setCopied] = useState(false);
     const [booked, setBooked] = useState(false);
-
+    // console.log(data);
     // Add a mounted flag to prevent hydration mismatches
     const [isMounted, setIsMounted] = useState(false);
 
@@ -213,14 +213,9 @@ const SingleCard = ({ result, id, ProUser }) => {
                         </div>
                         <div className="bg-[#0d1527]/40 p-5 rounded-2xl shadow-md mb-10">
                             <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-5">Curated By</h4>
-                            <div className="flex items-center gap-3">
-                                <Avatar className="w-10 h-10 border border-gray-700 bg-gray-800 text-white" >
-                                    <Avatar.Image alt={user?.name || "User"} src={user?.image} />
-                                </Avatar>
-                                <div className="overflow-hidden">
-                                    <h2 className="text-sm font-bold text-white ">{user?.name || "Name here"}</h2>
-                                    <p className="text-xs text-gray-500 ">{user?.email || ""}</p>
-                                </div>
+                            <div className="">
+                                <h1>Name:- {data.UserName}</h1>
+                                <p>Id:- #{data.UserId}</p>
                             </div>
                         </div>
                     </div>
