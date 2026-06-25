@@ -113,6 +113,7 @@ export default function FilterSidebar() {
 
                 </div>
             </div>
+            {/* Difficulty Level */}
             <div className="flex flex-col gap-2">
 
                 <h3 className="text-[11px] font-bold tracking-wider text-gray-500 uppercase font-mono mb-1">
@@ -129,7 +130,7 @@ export default function FilterSidebar() {
                                 key={levelo}
                                 onClick={() => setActiveLavel(levelo)}
                                 className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${isActive
-                                    ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shadow-[0_0_15px_rgba(34,211,238,0.08)]"
+                                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.08)]"
                                     : "text-gray-400 hover:bg-slate-800/60 hover:text-gray-200 border border-transparent"
                                     }`}
                             >
